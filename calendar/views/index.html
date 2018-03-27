@@ -1,0 +1,53 @@
+</head>
+       <!DOCTYPE html>
+
+<html ng-app="Myapp">
+
+ 
+
+  <head>
+
+
+    <link data-require="bootstrap-css@*" data-semver="2.3.2" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+    <script data-require="angular.js@1.1.5" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    </script>
+    <script src="js/calendar.js"></script>  
+    <script src="js/app-c.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+       <body ng-controller="MyCtrl">
+          <table class="table">
+                <thead>
+                     <tr>
+                       <th>Active users:</th>
+                       <th>CDP ID:</th>
+                       <th>User Name</th>
+                       <th>Page Name</th> 
+                       <th>Visited count</th>                 
+                       <th>JS EXECPTION</th>  
+                       <th>API EXCEPTION</th>  
+                     </tr>
+                </thead>
+                <tbody>                   
+              
+                     <tr ng-repeat="event in events">
+                      <td>{{event.active_users}}</td>
+                       <td>{{event.cdp_id}}</td>
+                       <td>{{event.users[0].user_name}}</td>
+                       <td>{{event.users[0].pages[0].page_name}}</td>
+                       <td>{{event.users[0].pages[0].visited_count}}</td>
+                       <td>{{event.users[0].pages[0].js_exceptions}}</td>
+                       <td>{{event.users[0].pages[0].api_exceptions}}</td>                    
+
+                     </tr>
+
+
+                </tbody>
+
+              </table>
+
+
+
+</body>
+
+</html>
