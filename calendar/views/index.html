@@ -9,13 +9,19 @@
 
 
     <link data-require="bootstrap-css@*" data-semver="2.3.2" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
-    <script data-require="angular.js@1.1.5" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
-    </script>
+  <!--   // <script data-require="angular.js@1.6" data-semver="1.6" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    // </script>
+    // <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script> -->
+
+     <script src="https://code.angularjs.org/1.6.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
+    
     <script src="js/calendar.js"></script>  
     <script src="js/app-c.js"></script>
     <script src="/socket.io/socket.io.js"></script>
   </head>
        <body ng-controller="MyCtrl">
+        <div ng-view></div>
           <table class="table">
                 <thead>
                      <tr>

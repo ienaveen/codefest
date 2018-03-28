@@ -1,6 +1,17 @@
-var app = angular.module('Myapp', ['ui.calendar']);
+var app = angular.module('Myapp', ['ngRoute']);
 
- 
+app.config(function($routeProvider, $locationProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "templates/cdps.html"
+    })
+    .when("/ui_health", {
+        templateUrl : "templates/ui_health.html"
+    })
+    .when("/cdp_health", {
+        templateUrl : "templates/cdp_health.html"
+    })
+})
 
 app.factory('socket', function($rootScope) {
        var socket = io.connect();

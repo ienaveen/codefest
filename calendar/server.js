@@ -26,7 +26,7 @@ console.log("Running at Port 3000");
  // Set up the connection to the local db
  //var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
 
-MongoClient.connect('mongodb://127.0.0.1:27017/hack', function(err1, client) {
+MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client) {
 
      var db = client.db('hack');
 	io.sockets.on('connection', function(socket){
@@ -40,23 +40,23 @@ MongoClient.connect('mongodb://127.0.0.1:27017/hack', function(err1, client) {
 	    //if no error get reference to colelction named: 'notifications'
 	    socket.on('requestInit', function(){
 	    	console.log('into req init')
-			db.collection('uihealth').find().toArray(function(err,message){
+			db.collection('notifications').find().toArray(function(err,message){
 			       console.log("socket"+mdsok);
 			       console.log('before emit'+ message)
 			       mdsok.volatile.emit('home',message);
 			});
 		})
-		db.collection('uihealth', function(err, collection){
+		db.collection('notifications', function(err, collection){
 			if(err) { throw err; }
 			// if no error apply a find() and get reference to doc
 			collection.find().sort({ $natural:-1 }).limit(1).next(function(err, doc) {
 				if(err) { throw err; }
-				console.log("message"+doc.title+doc._id);
+				console.log("message"+doc._id);
 				// using tailable cursor get reference to our very first doc
 				var query = { _id: { $gt:new ObjectId(doc._id) } }; 
 				 var options = { tailable: true, awaitdata: true, numberOfRetries: -1 };
 				 var cursor = collection.find(query, options);				 
-				// This function will take cursor to next doc from current as soon as 'uihealth' database is updated
+				// This function will take cursor to next doc from current as soon as 'notifications' database is updated
 				function next() {
 				     
 				 cursor.next(function(err, message) {
