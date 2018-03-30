@@ -1,56 +1,77 @@
 </head>
-       <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html ng-app="Myapp">
 
- 
+<head>
 
-  <head>
+  <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+  <!-- <script src="main.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+  <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  <script>
+    // Add the modules here.
+    var app = angular.module('Myapp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.bootstrap']);
+  </script>
+  <script src="js/calendar.js"></script>
+  <script src="dist/output.js"></script>
+  <!-- <script src="js/app-c.js"></script> -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body ng-controller="MyCtrl">
+  <div ng-view></div>
+
+  <!-- <table class="table">
+    <thead>
+      <tr>
+        <th>Active users:</th>
+        <th>CDP ID:</th>
+        <th>User Name</th>
+        <th>Page Name</th>
+        <th>Visited count</th>
+        <th>JS EXECPTION</th>
+        <th>API EXCEPTION</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr ng-repeat="event in events">
+        <td>{{event.active_users}}</td>
+        <td>{{event.cdp_id}}</td>
+        <td>{{event.users[0].user_name}}</td>
+        <td>{{event.users[0].pages[0].page_name}}</td>
+        <td>{{event.users[0].pages[0].visited_count}}</td>
+        <td>{{event.users[0].pages[0].js_exceptions}}</td>
+        <td>{{event.users[0].pages[0].api_exceptions}}</td>
+
+      </tr>
 
 
-    <link data-require="bootstrap-css@*" data-semver="2.3.2" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
-  <!--   // <script data-require="angular.js@1.6" data-semver="1.6" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-    // </script>
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script> -->
+    </tbody>
 
-     <script src="https://code.angularjs.org/1.6.0/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
-    
-    <script src="js/calendar.js"></script>  
-    <script src="js/app-c.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-  </head>
-       <body ng-controller="MyCtrl">
-        <div ng-view></div>
-          <table class="table">
-                <thead>
-                     <tr>
-                       <th>Active users:</th>
-                       <th>CDP ID:</th>
-                       <th>User Name</th>
-                       <th>Page Name</th> 
-                       <th>Visited count</th>                 
-                       <th>JS EXECPTION</th>  
-                       <th>API EXCEPTION</th>  
-                     </tr>
-                </thead>
-                <tbody>                   
-              
-                     <tr ng-repeat="event in events">
-                      <td>{{event.active_users}}</td>
-                       <td>{{event.cdp_id}}</td>
-                       <td>{{event.users[0].user_name}}</td>
-                       <td>{{event.users[0].pages[0].page_name}}</td>
-                       <td>{{event.users[0].pages[0].visited_count}}</td>
-                       <td>{{event.users[0].pages[0].js_exceptions}}</td>
-                       <td>{{event.users[0].pages[0].api_exceptions}}</td>                    
-
-                     </tr>
-
-
-                </tbody>
-
-              </table>
+  </table> -->
 
 
 

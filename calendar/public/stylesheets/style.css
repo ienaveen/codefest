@@ -1,8 +1,23 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.card {
+  width: 400px;
+  margin: 20px;
+  display: inline-block;
 }
 
-a {
-  color: #00B7FF;
+.card .card-body {
+  height: 240px;
+}
+
+.add_cdp {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+
+.cdp_tabs .tab-content>.tab-pane {
+  padding: 1rem;
+}
+
+.cdp_tabs {
+  padding: 1rem;
 }
