@@ -88,3 +88,15 @@ live-bar-chart{
     font-size: 14px;
   }
 }
+
+line-chart{
+  svg {
+    font-family: "Helvetica Neue", Helvetica;
+  }
+
+  .line {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+  }
+}
