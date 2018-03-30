@@ -17,7 +17,6 @@ app.factory('socket', function ($rootScope) {
         on: function (eventName, callback) {
 
             socket.once(eventName, function () {
-                debugger;
                 var args = arguments;
                 $rootScope.$apply(function () {
                     callback.apply(socket, args);
@@ -44,18 +43,29 @@ app.factory('socket', function ($rootScope) {
     };
 
 });
+// app.factory('httpFact', ['$http', function($http) {
+//     var all, odds = [];
+//     var deferred = $q.defer();
+//     var getData = function(url) {
+//         return $http.get(url)
+//         .then(function(response) {
+//             debugger;
+//           all = response[0].data.cdps;          
+//           return all
+//         });
+//     }
+//     return {
+//         getData: getData 
+//     };
+// }]);
 
-app.controller('MyCtrl', function ($scope, socket) {
-
-    socket.emit('newevent',data);
+app.controller('MyCtrl', function ($scope, socket) {  
     socket.emit('requestInit');
 
     socket.on('home', function (data) {
-        debugger
         $scope.events = data;
         events = data;
         $scope.eventSources = [$scope.events];
-        debugger;
         data1 = JSON.stringify($scope.events);
 
     });

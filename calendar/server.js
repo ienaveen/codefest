@@ -4,40 +4,57 @@ var app = new express();
 var url = require('url');
 var fs = require('fs');
 var path = require ('path');
+var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var bodyParser = require('body-parser');
+var util = require('util');
 // var twilio = require('twilio');
 var server;var mdsok;
-var i=-1;
-var file_path 
 
-
-app.get('/', function(request, response){
-	//console.log(path.join(__dirname,'angular-calendar.html'));
-    response.sendfile(path.join(__dirname, 'views' ,'index.html'));
-});
+//Express initi code 
 app.use(express.static('public'));
 app.use(express.static('views'));
-
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 var server = http.createServer(app);
 server.listen(3000)
 var io = require('socket.io').listen(server);
 console.log("Running at Port 3000");
- // Set up the connection to the local db
- //var mongoclient = new MongoClient(new Server("localhost", 27017), {native_parser: true});
+//End of Express initi code  
 
 MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client) {
-
      var db = client.db('hack');
+
+    //routes 
+    app.get('/coc/cdps', function(request, response){
+    	console.log('into /coc/cdps')
+    	db.collection('cdps').find().toArray(function(err,cdps){
+			// console.log("/coc/cdps"+cdps);
+			response.send(cdps)  
+			});   	
+	});
+	app.post('/coc/cdps', function(request, response){
+    	console.log('into post /coc/cdps'+ util.inspect(request.body))
+    	db.collection('cdps').insertOne(request.body,function(err,cdps){
+			console.log("/coc/cdps"+cdps);
+			response.send(cdps)  
+			});   	
+	});
+    app.get('/', function(request, response){
+    	response.sendfile(path.join(__dirname, 'views' ,'index.html'));
+	});
+
+    //end of routes 
+
+    //socket.io connection 
 	io.sockets.on('connection', function(socket){
     	//send data to client 
     	console.log("into connect");               
         mdsok = socket;
         if(err1) { throw err1; }
- 
- 
        console.log("into req/");
-	    //if no error get reference to colelction named: 'notifications'
+	    // 'notifications' initial emit 
 	    socket.on('requestInit', function(){
 	    	console.log('into req init')
 			db.collection('notifications').find().toArray(function(err,message){
@@ -46,6 +63,7 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 			       mdsok.volatile.emit('home',message);
 			});
 		})
+		//notifications push notification 		
 		db.collection('notifications', function(err, collection){
 			if(err) { throw err; }
 			// if no error apply a find() and get reference to doc
@@ -73,7 +91,10 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 			next();
 			});
 		});
+		//notifications push notification end 
 	});
+    //end of socket.io connection
 });
+//end of mongoclient connection
 					  
 

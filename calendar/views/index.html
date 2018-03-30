@@ -32,10 +32,11 @@
     // Add the modules here.
     var app = angular.module('Myapp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.bootstrap']);
   </script>
-  <script src="js/calendar.js"></script>
+   <script src="/socket.io/socket.io.js"></script>
+   <!-- <script src="js/calendar.js"></script> -->
   <script src="dist/output.js"></script>
   <!-- <script src="js/app-c.js"></script> -->
-  <script src="/socket.io/socket.io.js"></script>
+
 
   <link rel="stylesheet" href="dist/style.css">
 </head>
@@ -43,7 +44,7 @@
 <body ng-controller="MyCtrl">
   <div ng-view></div>
 
-  <!-- <table class="table">
+ <!--  <table class="table">
     <thead>
       <tr>
         <th>Active users:</th>
@@ -71,8 +72,8 @@
 
     </tbody>
 
-  </table> -->
-
+  </table>
+ -->
 
 
 </body>

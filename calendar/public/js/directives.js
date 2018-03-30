@@ -6,11 +6,11 @@ app.directive('card', function () {
         template: `
             <div class="card" ng-click="cardclick()">
                 <div class="card-body">
-                    <h4 class="card-title">{{cardobj.title}}</h4>
-                    <p class="card-text">{{cardobj.desc}}</p>
-                    <p class="card-text">{{cardobj.ip}}</p>
-                    <p class="card-text">{{cardobj.version}}</p>
-                    <p class="card-text">{{cardobj.status}}</p>
+                    <h4 class="card-title">{{cardobj.cdp_details.title}}</h4>
+                    <p class="card-text">{{cardobj.cdp_details.desc}}</p>
+                    <p class="card-text">{{cardobj.cdp_details.ip}}</p>
+                    <p class="card-text">{{cardobj.cdp_details.version}}</p>
+                    <p class="card-text">{{cardobj.cdp_details.status}}</p>
                 </div>
             </div>
         `,
