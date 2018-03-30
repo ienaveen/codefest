@@ -1,5 +1,8 @@
+'use strict';
+
 var gulp = require('gulp'),
-    concat = require('gulp-concat')
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass'),
     runSequence = require('run-sequence');
 
 gulp.task('scripts', function () {
@@ -11,9 +14,15 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('./public/dist/'));
 });
 
+gulp.task('sass', function () {
+    return gulp.src('./public/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/dist/'));
+});
+
 /**
  * default task
  */
 gulp.task("default", function () {
-    runSequence('scripts');
+    runSequence('scripts', 'sass');
 });
