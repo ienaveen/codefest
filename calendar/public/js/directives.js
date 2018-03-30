@@ -203,7 +203,7 @@ app.directive('liveBarChart', function () {
             var redraw = function (settings) {
                 pullData(settings, redrawChart)
             }
-            debugger;
+
             //setup (includes first draw)
             var settings = setup("#" + element[0].childNodes[1].id);
             redraw(settings)
@@ -252,7 +252,7 @@ app.directive('lineChart', function () {
                 delay = 500;
 
             var color = d3.scale.category10();
-            debugger;
+
             var svg = d3.select("#" + element[0].childNodes[1].id).append("svg")
                 .attr("width", w + m[1] + m[3])
                 .attr("height", h + m[0] + m[2])
@@ -304,7 +304,7 @@ app.directive('lineChart', function () {
                     .enter().append("g")
                     .attr("class", "symbol");
 
-                setTimeout(lines, duration);
+                setTimeout(lines, 500);
             });
 
             function lines() {
@@ -351,6 +351,15 @@ app.directive('lineChart', function () {
                             .attr("transform", function (d) { return "translate(" + x(d.date) + "," + y(d.price) + ")"; });
                     });
                 }
+
+                var k = 1, n = symbols[0].values.length;
+                d3.timer(function () {
+                    draw(k);
+                    if ((k += 2) >= n - 1) {
+                        draw(n - 1);
+                        return true;
+                    }
+                });
             }
 
         },
