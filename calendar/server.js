@@ -9,9 +9,14 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
 var util = require('util');
-// var twilio = require('twilio');
-var server;var mdsok;
+// var JSON = require('JSON');
+var twilio = require('twilio');
 
+var server;var mdsok;
+//twilio
+var accountSid = 'AC5bed0ddce8ebb91d092dd8daf56f1ba0'; // Your Account SID from www.twilio.com/console
+var authToken = 'e657dada59d54191e91828305736c0cc';   // Your Auth Token from www.twilio.com/console
+var client = new twilio(accountSid, authToken);
 //Express initi code 
 app.use(express.static('public'));
 app.use(express.static('views'));
@@ -23,6 +28,48 @@ var io = require('socket.io').listen(server);
 console.log("Running at Port 3000");
 //End of Express initi code  
 
+var parseResponse = function(cdps){
+	var obj = cdps;    		
+	var total_page_visits =0,js_errors = 0,api_errors = 0 ; 
+	for (var i = 0 ;i< obj.ui_details.users.length; i++){
+		for (var j = 0 ;j< obj.ui_details.users[i].pages.length; j++){
+            total_page_visits = total_page_visits + obj.ui_details.users[i].pages[j].visited_count;
+            js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
+            api_errors = api_errors + obj.ui_details.users[i].pages[j].api_exceptions.length;
+		}
+	}
+	var banner = {"active_users":obj.ui_details.active_users, "total_page_visits":total_page_visits,"js_errors":js_errors,"api_errors":api_errors}
+	console.log('banner'+ banner)
+	cdps.banner_info = banner;
+	return cdps;
+}
+var send_sms = function (obj){
+	console.log('into send sms');
+	client.messages.create({
+    body: 'An Exception has occurred in '+ obj,
+    to: '+919848461918',  // Text this number
+    from: '+12177335076' // From a valid Twilio number
+	})
+	.then(function(message)
+		{   console.log('nav')
+		console.log(message.sid)
+		});
+	// client.calls.create({
+ //    	url: "http://twimlets.com/echo?Twiml=%3CResponse%3E%3CSay%20voice=%27alice%27%3E%20Welcome%20to%20HACK FEST%20a%20new%20exception%20was%20just%20added%20was%20encountered%20please%20check%20it%20or%20view%20your%20messages%20for%20more%20details%20thanks%20for%20listening%20from%20naveen%20and%20pavan%3C/Say%3E%3C/Response%3E",
+ //    	to: '+919848461918',  // Text this number
+ //    	from: '+12177335076' // From a valid Twilio number
+ //  })
+	// .then(function(message)
+	// 	{   console.log('nav')
+	// 	console.log(message.sid)
+	// 	});
+
+}
+
+// var obj 
+// send_sms(obj)
+
+
 MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client) {
      var db = client.db('hack');
 
@@ -31,6 +78,15 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
     	console.log('into /coc/cdps')
     	db.collection('cdps').find().toArray(function(err,cdps){
 			// console.log("/coc/cdps"+cdps);
+			response.send(cdps)  
+			});   	
+	});
+	app.get('/coc/cdps/:cdpId', function(request, response){
+    	console.log('into /coc/cdps/cdpid')
+    	var query = {cdp_id: request.params.cdpId};    	
+    	db.collection('cdps').find(query).toArray(function(err,cdps){
+    		var cdps_fn = parseResponse(cdps[0])
+    		cdps[0] = cdps_fn
 			response.send(cdps)  
 			});   	
 	});
@@ -76,14 +132,18 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 				 var cursor = collection.find(query, options);				 
 				// This function will take cursor to next doc from current as soon as 'notifications' database is updated
 				function next() {
-				     
 				 cursor.next(function(err, message) {
 				      if( message != null)
 				      {
 						if (err)
 						  {throw err;}
 						console.log("into print"+message + mdsok);
-						io.sockets.emit('add',message);
+						var cdps_fn = parseResponse(message)
+						if (cdps_fn.ui_details.users[0].pages[0].page_name)
+							send_sms(cdps_fn.ui_details.users[0].pages[0].page_name)
+						else
+							send_sms("Networks")
+						io.sockets.emit('add',cdps_fn);
 						 next();
 					  }
 				})

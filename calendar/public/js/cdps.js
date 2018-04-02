@@ -1,4 +1,4 @@
-app.controller('CDPCtrl', function ($scope, $location, $http) {
+app.controller('CDPCtrl', function ($scope, $location, $http, socket) {
     var self = this;
 
     $scope.cardClick = function() {
@@ -6,20 +6,24 @@ app.controller('CDPCtrl', function ($scope, $location, $http) {
     }
     $scope.getCDP = function(){
         $http.get('/coc/cdps').then(function(res){
-            debugger;
             $scope.cdps = res.data;
         })
     }
+    // socket.emit('requestInit');
     $scope.getCDP();
 
+    socket.on('add', function (data) {
+        debugger;
+        data1 = JSON.stringify(data);
+        //alert('in add');
+        $scope.events.push(data);
 
+    });
     $scope.update = function () {
 
     }
     $scope.postCDP = function(newCDP){
-        debugger;
         $http.post('/coc/cdps' ,newCDP).then(function(res){
-            debugger;            
             toastr.success('New CDP ' + newCDP.cdp_details.title + ' added')
                  $scope.cdps.push(newCDP);
         $scope.$apply();  
@@ -38,7 +42,6 @@ app.controller('CDPCtrl', function ($scope, $location, $http) {
             },
             "ui_details":""
         }
-        debugger;
         $scope.postCDP(newCDP)         
     }
 
