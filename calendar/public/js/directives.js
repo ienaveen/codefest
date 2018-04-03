@@ -69,7 +69,7 @@ app.directive('liveBarChart', function () {
                 y.domain(newdata.sort(function (a, b) {
                     return b.value - a.value;
                 })
-                    .map(function (d) { return d.key; }));
+                    .map(function (d) { return d.page_name; }));
                 var barmax = d3.max(newdata, function (e) {
                     return e.value;
                 });
@@ -79,11 +79,11 @@ app.directive('liveBarChart', function () {
                 //ENTER//
                 /////////
 
-                //Bind new data to chart rows 
+                //Bind new data to chart rows
 
                 //Create chart row and move to below the bottom of the chart
                 var chartRow = svg.selectAll("g.chartRow")
-                    .data(newdata, function (d) { return d.key });
+                    .data(newdata, function (d) { return d.page_name });
                 var newRow = chartRow
                     .enter()
                     .append("g")
@@ -96,7 +96,7 @@ app.directive('liveBarChart', function () {
                     .attr("x", 0)
                     .attr("opacity", 0)
                     .attr("height", y.rangeBand())
-                    .attr("width", function (d) { return x(d.value); })
+                    .attr("width", function (d) { return x(d.page_visited_count); })
 
                 //Add value labels
                 newRow.append("text")
@@ -106,7 +106,7 @@ app.directive('liveBarChart', function () {
                     .attr("opacity", 0)
                     .attr("dy", ".35em")
                     .attr("dx", "0.5em")
-                    .text(function (d) { return d.value; });
+                    .text(function (d) { return d.page_visited_count; });
 
                 //Add Headlines
                 newRow.append("text")
@@ -117,7 +117,7 @@ app.directive('liveBarChart', function () {
                     .attr("opacity", 0)
                     .attr("dy", ".35em")
                     .attr("dx", "0.5em")
-                    .text(function (d) { return d.key });
+                    .text(function (d) { return d.page_name });
 
 
                 //////////
@@ -127,7 +127,7 @@ app.directive('liveBarChart', function () {
                 //Update bar widths
                 chartRow.select(".bar").transition()
                     .duration(300)
-                    .attr("width", function (d) { return x(d.value); })
+                    .attr("width", function (d) { return x(d.page_visited_count); })
                     .attr("opacity", 1);
 
                 //Update data labels
@@ -135,7 +135,7 @@ app.directive('liveBarChart', function () {
                     .duration(300)
                     .attr("opacity", 1)
                     .tween("text", function (d) {
-                        var i = d3.interpolate(+this.textContent.replace(/\,/g, ''), +d.value);
+                        var i = d3.interpolate(+this.textContent.replace(/\,/g, ''), +d.page_visited_count);
                         return function (t) {
                             this.textContent = Math.round(i(t));
                         };
@@ -167,7 +167,7 @@ app.directive('liveBarChart', function () {
                 chartRow.transition()
                     .delay(delay)
                     .duration(900)
-                    .attr("transform", function (d) { return "translate(0," + y(d.key) + ")"; });
+                    .attr("transform", function (d) { return "translate(0," + y(d.page_name) + ")"; });
             };
 
 
@@ -176,12 +176,12 @@ app.directive('liveBarChart', function () {
             //Since our data is fake, adds some random changes to simulate a data stream.
             //Uses a callback because d3.json loading is asynchronous
             var pullData = function (settings, callback) {
-                d3.json("fakeData.json", function (err, data) {
+                d3.json("page_visited.json", function (err, data) {
                     if (err) return console.warn(err);
 
                     var newData = data;
                     data.forEach(function (d, i) {
-                        var newValue = d.value + Math.floor((Math.random() * 10) - 5)
+                        var newValue = d.page_visited_count + Math.floor((Math.random() * 10) - 5)
                         newData[i].value = newValue <= 0 ? 10 : newValue
                     })
 
@@ -328,14 +328,14 @@ app.directive('lineChart', function () {
 
                     e.append("circle")
                         .attr("r", 5)
-                        .style("fill", function (d) { return color(d.key); })
+                        .style("fill", function (d) { return color(d.page_name); })
                         .style("stroke", "#000")
                         .style("stroke-width", "2px");
 
                     e.append("text")
                         .attr("x", 12)
                         .attr("dy", ".31em")
-                        .text(d.key);
+                        .text(d.page_name);
                 });
 
                 function draw(k) {
