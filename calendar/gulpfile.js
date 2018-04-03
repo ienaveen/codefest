@@ -6,12 +6,16 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence');
 
 gulp.task('scripts', function () {
-    return gulp.src(
-            ['./public/js/directives.js', './public/js/app-c.js', './public/js/cdps.js'
-            , './public/js/ui_health.js']
-        )
-        .pipe(concat('output.js'))
-        .pipe(gulp.dest('./public/dist/'));
+    return gulp
+			.src([
+				"./public/js/directives.js",
+				"./public/js/app-c.js",
+				"./public/js/cdps.js",
+				"./public/js/ui_health.js",
+				"./public/js/ui_analytics.js"
+			])
+			.pipe(concat("output.js"))
+			.pipe(gulp.dest("./public/dist/"));
 });
 
 gulp.task('sass', function () {

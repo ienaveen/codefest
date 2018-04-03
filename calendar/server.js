@@ -17,7 +17,7 @@ var server;var mdsok;
 var accountSid = 'AC5bed0ddce8ebb91d092dd8daf56f1ba0'; // Your Account SID from www.twilio.com/console
 var authToken = 'e657dada59d54191e91828305736c0cc';   // Your Auth Token from www.twilio.com/console
 var client = new twilio(accountSid, authToken);
-//Express initi code 
+//Express initi code
 app.use(express.static('public'));
 app.use(express.static('views'));
 app.use(bodyParser.json()); // support json encoded bodies
@@ -26,11 +26,11 @@ var server = http.createServer(app);
 server.listen(3000)
 var io = require('socket.io').listen(server);
 console.log("Running at Port 3000");
-//End of Express initi code  
+//End of Express initi code
 
 var parseResponse = function(cdps){
-	var obj = cdps;    		
-	var total_page_visits =0,js_errors = 0,api_errors = 0 ; 
+	var obj = cdps;
+	var total_page_visits =0,js_errors = 0,api_errors = 0 ;
 	var graph_page_visit = {"NETWORKS":0,
                     "APS":0,
                     "RF":0,
@@ -80,51 +80,51 @@ var send_sms = function (obj){
 
 }
 
-// var obj 
+// var obj
 // send_sms(obj)
 
 
 MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client) {
      var db = client.db('hack');
 
-    //routes 
+    //routes
     app.get('/coc/cdps', function(request, response){
     	console.log('into /coc/cdps')
     	db.collection('cdps').find().toArray(function(err,cdps){
 			// console.log("/coc/cdps"+cdps);
-			response.send(cdps)  
-			});   	
+			response.send(cdps)
+			});
 	});
 	app.get('/coc/cdps/:cdpId', function(request, response){
     	console.log('into /coc/cdps/cdpid')
-    	var query = {cdp_id: request.params.cdpId};    	
+    	var query = {cdp_id: request.params.cdpId};
     	db.collection('cdps').find(query).toArray(function(err,cdps){
     		var cdps_fn = parseResponse(cdps[0])
     		cdps[0] = cdps_fn
-			response.send(cdps)  
-			});   	
+			response.send(cdps)
+			});
 	});
 	app.post('/coc/cdps', function(request, response){
     	console.log('into post /coc/cdps'+ util.inspect(request.body))
     	db.collection('cdps').insertOne(request.body,function(err,cdps){
 			console.log("/coc/cdps"+cdps);
-			response.send(cdps)  
-			});   	
+			response.send(cdps)
+			});
 	});
     app.get('/', function(request, response){
     	response.sendfile(path.join(__dirname, 'views' ,'index.html'));
 	});
 
-    //end of routes 
+    //end of routes
 
-    //socket.io connection 
+    //socket.io connection
 	io.sockets.on('connection', function(socket){
-    	//send data to client 
-    	console.log("into connect");               
+    	//send data to client
+    	console.log("into connect");
         mdsok = socket;
         if(err1) { throw err1; }
        console.log("into req/");
-	    // 'notifications' initial emit 
+	    // 'notifications' initial emit
 	    socket.on('requestInit', function(){
 	    	console.log('into req init')
 			db.collection('notifications').find().toArray(function(err,message){
@@ -133,7 +133,7 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 			       mdsok.volatile.emit('home',message);
 			});
 		})
-		//notifications push notification 		
+		//notifications push notification
 		db.collection('notifications', function(err, collection){
 			if(err) { throw err; }
 			// if no error apply a find() and get reference to doc
@@ -141,9 +141,9 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 				if(err) { throw err; }
 				console.log("message"+doc._id);
 				// using tailable cursor get reference to our very first doc
-				var query = { _id: { $gt:new ObjectId(doc._id) } }; 
+				var query = { _id: { $gt:new ObjectId(doc._id) } };
 				 var options = { tailable: true, awaitdata: true, numberOfRetries: -1 };
-				 var cursor = collection.find(query, options);				 
+				 var cursor = collection.find(query, options);
 				// This function will take cursor to next doc from current as soon as 'notifications' database is updated
 				function next() {
 				 cursor.next(function(err, message) {
@@ -153,10 +153,12 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 						  {throw err;}
 						console.log("into print"+message + mdsok);
 						var cdps_fn = parseResponse(message)
+						/*
 						if (cdps_fn.ui_details.users[0].pages[0].page_name)
 							send_sms(cdps_fn.ui_details.users[0].pages[0].page_name)
 						else
 							send_sms("Networks")
+						*/
 						io.sockets.emit('add',cdps_fn);
 						 next();
 					  }
@@ -165,10 +167,10 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 			next();
 			});
 		});
-		//notifications push notification end 
+		//notifications push notification end
 	});
     //end of socket.io connection
 });
 //end of mongoclient connection
-					  
+
 

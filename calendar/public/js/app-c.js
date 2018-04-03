@@ -12,13 +12,13 @@ app.config(function ($routeProvider, $locationProvider) {
 })
 
 app.factory('socket', function ($rootScope) {
-    debugger;
+
     var socket = io.connect();
     return {
         on: function (eventName, callback) {
 
             socket.once(eventName, function () {
-                debugger;
+
                 var args = arguments;
                 $rootScope.$apply(function () {
                     callback.apply(socket, args);
@@ -46,12 +46,12 @@ app.factory('socket', function ($rootScope) {
 
 });
 
-app.controller('MyCtrl', function ($scope, socket) { 
-    debugger; 
+app.controller('MyCtrl', function ($scope, socket) {
+
     socket.emit('requestInit');
 
     socket.on('home', function (data) {
-        debugger;
+
         $scope.events = data;
         events = data;
         $scope.eventSources = [$scope.events];
@@ -60,7 +60,7 @@ app.controller('MyCtrl', function ($scope, socket) {
     });
 
     socket.on('add', function (data) {
-        debugger;
+
         data1 = JSON.stringify(data);
         //alert('in add');
         $scope.events.push(data);
