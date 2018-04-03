@@ -1,5 +1,5 @@
-<div ng-controller="CDPCtrl">
-    <card ng-repeat="cdp in cdps" cardobj="cdp" cardclick="cardClick()">
+<div ng-controller="CDPCtrl" class="cdps">
+    <card ng-repeat="cdp in cdps" cardobj="cdp" cardclick="cardClick(cdp)">
     </card>
     <button type="button" class="btn btn-primary add_cdp" ng-click="showAddCDP()">ADD CDP</button>
 </div>
