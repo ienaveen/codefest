@@ -15,10 +15,18 @@ app.controller("CDPCtrl", function($scope, $location, $http, $rootScope, socket)
 	$scope.getCDP();
 
 	socket.on("add", function(data) {
-
-		data1 = JSON.stringify(data);
 		//alert('in add');
-		$scope.events.push(data);
+        var exists = false,indx;
+        for (var i =0;i<$scope.cdps.length;i++){
+            if ($scope.cdps[i].cdp_id == data.cdp_id){
+                exists = true;
+                indx = i;
+            }
+        }
+        if (exists)
+            $scope.cdps[indx] = data
+        else 
+		      $scope.cdps.push(data);
 	});
 
 	$scope.update = function() {};

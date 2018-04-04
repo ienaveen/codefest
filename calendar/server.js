@@ -145,8 +145,9 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 	    socket.on('requestInit', function(){
 	    	console.log('into req init')
 			db.collection('notifications').find().toArray(function(err,message){
-			       console.log("socket"+mdsok);
-			       console.log('before emit'+ message)
+			       // console.log("socket"+mdsok);
+			       // console.log('before emit'+ message)
+			       console.log('emit home event')
 			       mdsok.volatile.emit('home',message);
 			});
 		})
@@ -168,7 +169,7 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 				      {
 						if (err)
 						  {throw err;}
-						console.log("into print"+message + mdsok);
+						//console.log("into print"+message + mdsok);
 						var cdps_fn = parseResponse(message)
 						/*
 						if (cdps_fn.ui_details.users[0].pages[0].page_name)
@@ -176,6 +177,7 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 						else
 							send_sms("Networks")
 						*/
+						console.log('emit add')
 						io.sockets.emit('add',cdps_fn);
 						 next();
 					  }

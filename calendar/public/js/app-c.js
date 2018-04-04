@@ -15,10 +15,9 @@ app.factory('socket', function ($rootScope) {
 
     var socket = io.connect();
     return {
-        on: function (eventName, callback) {
+        on: function (eventName, callback) {            
 
-            socket.once(eventName, function () {
-
+            socket.on(eventName, function () {
                 var args = arguments;
                 $rootScope.$apply(function () {
                     callback.apply(socket, args);
@@ -51,7 +50,6 @@ app.controller('MyCtrl', function ($scope, socket) {
     socket.emit('requestInit');
 
     socket.on('home', function (data) {
-
         $scope.events = data;
         events = data;
         $scope.eventSources = [$scope.events];
@@ -59,12 +57,12 @@ app.controller('MyCtrl', function ($scope, socket) {
 
     });
 
-    socket.on('add', function (data) {
+    // socket.on('add', function (data) {
+    //      debugger;
+    //     data1 = JSON.stringify(data);
+    //     //alert('in add');
+    //     $scope.events.push(data);
 
-        data1 = JSON.stringify(data);
-        //alert('in add');
-        $scope.events.push(data);
-
-    });
+    // });
 
 });
