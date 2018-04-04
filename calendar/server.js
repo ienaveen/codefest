@@ -9,6 +9,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
 var util = require('util');
+var request = require('request');
 // var JSON = require('JSON');
 var twilio = require('twilio');
 
@@ -83,6 +84,17 @@ var send_sms = function (obj){
 	// 	});
 
 }
+var post_python = function(postJson){
+	console.log('into post python' + postJson);
+	request({
+    url: "http://10.22.136.123:5000/addcdp",
+    method: "POST",
+    json: true,   
+    body: postJson
+	}, function (error, response, body){
+	     console.log('python resp'+ response);
+	});
+}
 
 // var obj
 // send_sms(obj)
@@ -110,6 +122,7 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 	});
 	app.post('/coc/cdps', function(request, response){
     	console.log('into post /coc/cdps'+ util.inspect(request.body))
+        post_python(request.body)
     	db.collection('cdps').insertOne(request.body,function(err,cdps){
 			console.log("/coc/cdps"+cdps);
 			response.send(cdps)
