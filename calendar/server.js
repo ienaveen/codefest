@@ -42,19 +42,23 @@ var parseResponse = function(cdps){
                     "SERVICES":0,
                     "SYSTEM":0
                     }
-	for (var i = 0 ;i< obj.ui_details.users.length; i++){
-		for (var j = 0 ;j< obj.ui_details.users[i].pages.length; j++){
-			graph_page_visit[obj.ui_details.users[i].pages[j].page_name] = graph_page_visit[obj.ui_details.users[i].pages[j].page_name] + obj.ui_details.users[i].pages[j].visited_count
-            total_page_visits = total_page_visits + obj.ui_details.users[i].pages[j].visited_count;
-            js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
-            api_errors = api_errors + obj.ui_details.users[i].pages[j].api_exceptions.length;
+    if (obj && obj.ui_details){
+		for (var i = 0 ;i< obj.ui_details.users.length; i++){
+			for (var j = 0 ;j< obj.ui_details.users[i].pages.length; j++){
+				graph_page_visit[obj.ui_details.users[i].pages[j].page_name] = graph_page_visit[obj.ui_details.users[i].pages[j].page_name] + obj.ui_details.users[i].pages[j].visited_count
+	            total_page_visits = total_page_visits + obj.ui_details.users[i].pages[j].visited_count;
+	            if (obj.ui_details.users[i].pages[j].js_exceptions)
+	            js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
+	            if (obj.ui_details.users[i].pages[j].api_exceptions)
+	            	api_errors = api_errors + obj.ui_details.users[i].pages[j].api_exceptions.length;
+			}
 		}
+		var banner = {"active_users":obj.ui_details.active_users, "total_page_visits":total_page_visits,"js_errors":js_errors,"api_errors":api_errors}
+		//console.log('banner'+ banner)
+		console.log('graph_page_visit'+ graph_page_visit)
+		cdps.banner_info = banner;
+		cdps.graph_page_visit = graph_page_visit;
 	}
-	var banner = {"active_users":obj.ui_details.active_users, "total_page_visits":total_page_visits,"js_errors":js_errors,"api_errors":api_errors}
-	//console.log('banner'+ banner)
-	console.log('graph_page_visit'+ graph_page_visit)
-	cdps.banner_info = banner;
-	cdps.graph_page_visit = graph_page_visit;
 	return cdps;
 }
 var send_sms = function (obj){
@@ -85,8 +89,8 @@ var send_sms = function (obj){
 
 
 MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client) {
-     var db = client.db('hack');
 
+     var db = client.db('hack');
     //routes
     app.get('/coc/cdps', function(request, response){
     	console.log('into /coc/cdps')
