@@ -69,7 +69,7 @@ app.directive('liveBarChart', function () {
                 y.domain(newdata.sort(function (a, b) {
                     return b.value - a.value;
                 })
-                    .map(function (d) { return d.page_name; }));
+                    .map(function (d) { return d.key; }));
                 var barmax = d3.max(newdata, function (e) {
                     return e.value;
                 });
@@ -83,7 +83,7 @@ app.directive('liveBarChart', function () {
 
                 //Create chart row and move to below the bottom of the chart
                 var chartRow = svg.selectAll("g.chartRow")
-                    .data(newdata, function (d) { return d.page_name });
+                    .data(newdata, function (d) { return d.key });
                 var newRow = chartRow
                     .enter()
                     .append("g")
@@ -96,7 +96,7 @@ app.directive('liveBarChart', function () {
                     .attr("x", 0)
                     .attr("opacity", 0)
                     .attr("height", y.rangeBand())
-                    .attr("width", function (d) { return x(d.page_visited_count); })
+                    .attr("width", function (d) { return x(d.value); })
 
                 //Add value labels
                 newRow.append("text")
@@ -106,7 +106,7 @@ app.directive('liveBarChart', function () {
                     .attr("opacity", 0)
                     .attr("dy", ".35em")
                     .attr("dx", "0.5em")
-                    .text(function (d) { return d.page_visited_count; });
+                    .text(function (d) { return d.value; });
 
                 //Add Headlines
                 newRow.append("text")
@@ -117,7 +117,7 @@ app.directive('liveBarChart', function () {
                     .attr("opacity", 0)
                     .attr("dy", ".35em")
                     .attr("dx", "0.5em")
-                    .text(function (d) { return d.page_name });
+                    .text(function (d) { return d.key });
 
 
                 //////////
@@ -127,7 +127,7 @@ app.directive('liveBarChart', function () {
                 //Update bar widths
                 chartRow.select(".bar").transition()
                     .duration(300)
-                    .attr("width", function (d) { return x(d.page_visited_count); })
+                    .attr("width", function (d) { return x(d.value); })
                     .attr("opacity", 1);
 
                 //Update data labels
@@ -135,7 +135,7 @@ app.directive('liveBarChart', function () {
                     .duration(300)
                     .attr("opacity", 1)
                     .tween("text", function (d) {
-                        var i = d3.interpolate(+this.textContent.replace(/\,/g, ''), +d.page_visited_count);
+                        var i = d3.interpolate(+this.textContent.replace(/\,/g, ''), +d.value);
                         return function (t) {
                             this.textContent = Math.round(i(t));
                         };
@@ -167,8 +167,8 @@ app.directive('liveBarChart', function () {
                 chartRow.transition()
                     .delay(delay)
                     .duration(900)
-                    .attr("transform", function (d) { return "translate(0," + y(d.page_name) + ")"; });
-            };
+                    .attr("transform", function (d) { return "translate(0," + y(d.key) + ")"; });
+			};
 
 
 
@@ -176,18 +176,15 @@ app.directive('liveBarChart', function () {
             //Since our data is fake, adds some random changes to simulate a data stream.
             //Uses a callback because d3.json loading is asynchronous
             var pullData = function (settings, callback) {
-                d3.json("page_visited.json", function (err, data) {
-                    if (err) return console.warn(err);
 
-                    var newData = data;
-                    data.forEach(function (d, i) {
-                        var newValue = d.page_visited_count + Math.floor((Math.random() * 10) - 5)
-                        newData[i].value = newValue <= 0 ? 10 : newValue
-                    })
+                d3.json("page_visited.json", function (err, data1) {
 
-                    newData = formatData(newData);
+					scope.$watch("cdpdata", function (newData,oldData) {
+						debugger;
+						newData = formatData(newData);
+						callback(settings, newData);
+					});
 
-                    callback(settings, newData);
                 })
             }
 
@@ -195,8 +192,7 @@ app.directive('liveBarChart', function () {
             var formatData = function (data) {
                 return data.sort(function (a, b) {
                     return b.value - a.value;
-                })
-                    .slice(0, 10);
+                });
             }
 
             //I like to call it what it does
@@ -209,13 +205,16 @@ app.directive('liveBarChart', function () {
             redraw(settings)
 
             //Repeat every 3 seconds
-            setInterval(function () {
-                redraw(settings)
-            }, 3000);
+            // setInterval(function () {
+            //     redraw(settings)
+            // }, 3000);
         },
         template: `
             <div id="livebarchart"></div>
         `,
+		scope: {
+			cdpdata: "="
+		},
         restrict: 'E'
     }
 });
@@ -318,7 +317,7 @@ app.directive('lineChart', function () {
                 ]);
 
                 var g = svg.selectAll(".symbol")
-                    .attr("transform", function (d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
+					.attr("transform", function (d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
 
                 g.each(function (d) {
                     var e = d3.select(this);
@@ -328,14 +327,14 @@ app.directive('lineChart', function () {
 
                     e.append("circle")
                         .attr("r", 5)
-                        .style("fill", function (d) { return color(d.page_name); })
+                        .style("fill", function (d) { return color(d.key); })
                         .style("stroke", "#000")
                         .style("stroke-width", "2px");
 
                     e.append("text")
                         .attr("x", 12)
                         .attr("dy", ".31em")
-                        .text(d.page_name);
+                        .text(d.key);
                 });
 
                 function draw(k) {
