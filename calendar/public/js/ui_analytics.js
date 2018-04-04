@@ -1,20 +1,42 @@
-app.controller("UIAnalyticsCtrl", function(
+app.controller("UIAnalyticsCtrl", function (
 	$scope,
 	$location,
 	$rootScope,
 	$http,
 	socket
 ) {
-	var getBannerInfo = function() {
-		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function(res) {
-			var cdp_data = res.data[0];
-			$scope.cdp_banner_info = cdp_data.banner_info;
+
+	var formatData = function (data) {
+
+		var newData = [],
+			tempObj = {};
+
+		for (var key in data) {
+			if (data.hasOwnProperty(key)) {
+				tempObj["key"] = key;
+				tempObj["value"] = data[key] ? data[key] : 0;
+				newData.push(angular.copy(tempObj));
+			}
+		}
+
+		return newData;
+	}
+
+	var updateCDPData = function (data) {
+		$scope.cdp_data = data;
+		$scope.cdp_banner_info = data.banner_info;
+		$scope.cdp_graph_page_visit = formatData(data.graph_page_visit);
+	}
+
+	var getBannerInfo = function () {
+		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function (res) {
+			updateCDPData(res.data[0]);
 		});
 	};
 
 	getBannerInfo();
 
-	socket.on("add", function(data) {
-		$scope.cdp_banner_info = data.banner_info;
+	socket.on("add", function (data) {
+		updateCDPData(data);
 	});
 });
