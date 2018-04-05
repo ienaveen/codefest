@@ -44,40 +44,122 @@
 	padding: 1rem;
 }
 
+.cdpHealth{
+	height: 3000px;
+.banner {
+	margin: 30px 0px;
+	margin-left: 120px;
+	.card {
+		width: 17%;
+		display: inline-block;
+		margin-left: 10px;
+		.card-title {
+			text-align: center;
+		}
+		.card-value{
+			text-align: center;
+		}
+		&:hover {
+			background: #eeeeee;
+		}
+	}
+}
+.version_container{
+	width: 83%;
+	margin: 30px 0px;
+	margin-left: 126px;
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+	.infra{
+		border-bottom:  1px solid rgba(0,0,0,.125);
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+		&:hover {
+			background: #eeeeee;
+		}
+	}
+	.version_box {
+		height:	auto;
+		width: 9.74%;
+		padding: 10px;
+		display: inline-block;
+		border-right: 1px solid rgba(0,0,0,.125);
+    	&:hover {
+			background: #eeeeee;
+		}
+	}
+}
 .charts{
+	height: 500px;
 	padding: 20px;
-	margin-top:	20px;
+	margin-top:	30px;
 	margin-left: 10px;
 	float: left;
-	width: 50%;
+	width: 48%;
 	border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
 
-.api_interface{
-	margin: 30px 10px;
-	padding: 20px;
+.traceback_box{
+	height: 500px;
+	padding: 0;
+	padding-top: 10px;
+	margin-top:	30px;
+	margin-left: 10px;
+	float: left;
+	width: 48%;
 	border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
-    width: 860px;
-    height: 380px;
+    text-align: center;
+}
 
+.api_interface{
+	text-align: center;
+	height: 500px;
+	padding: 20px;
+	margin-top:	30px;
+	margin-left: 10px;
+	float: left;
+	width: 48%;
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 	.inputField{
 		float: left;
-		margin-right: 55px;
+		margin-right: 25px;
+		text-align: left;
 	}
 
 	.api_submit{
 		float: left;
-		margin-left: 50px;
 	}
 
 	.api_detail{
-		margin-top: 100px;
+		margin-top: 210px;
 		height: 200px;
 		border: 1px solid rgba(0, 0, 0, 0.125);
     	border-radius: .25rem;
 	}
+}
+.traceback{
+		list-style: none;
+		padding: 0;
+	li:nth-child(odd){
+		text-align: left;
+		padding: 10px;
+		list-style: none;
+		background-color: #FFFFF;
+	}
+	li:nth-child(even){
+		text-align: left;
+		padding: 10px;
+		list-style: none;
+		background-color: #dbd4d4;
+	}
+	span{
+		display: block;
+	}
+}
 }
 
 live-bar-chart {
@@ -222,32 +304,7 @@ line-chart {
 	}
 }
 
-.banner {
-	margin: 30px 0px;
-	.card {
-		width: 15%;
-		display: inline-block;
-		margin-left: 10px;
-		.card-title {
-			text-align: center;
-		}
-		.card-value{
-			text-align: center;
-		}
-	}
-}
-.version_container{
-	margin: 30px 10px;
-	.version_box {
-		height:	auto;
-		width: 15%;
-		padding: 10px;
-		display: inline-block;
-		float: left;
-		border: 1px solid rgba(0,0,0,.125);
-    	border-radius: .25rem;
-	}
-}
+
 donut-animation-chart{
 
 	#donutanimationchart{

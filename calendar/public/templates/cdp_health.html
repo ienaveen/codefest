@@ -1,7 +1,7 @@
 
 <h3>CDP Health Page</h3>
 
-<div class=""  ng-controller="UIHealthCtrl">
+<div class="cdpHealth"  ng-controller="UIHealthCtrl">
 	<div class="banner">
 	<div class="card">
 		<div class="card-body">
@@ -33,34 +33,26 @@
 			<h1 class="card-value">{{cdp_banner_info.api_errors}}</h1>
 		</div>
 	</div>
-
-	
-	
-	<!-- <div class="api_interface">
-		<h5>API Interface</h5>
-		<form name="api_interface" id="api_interface" novalidate>
-			<div class="inputField">
-				URL:<br>
-				<input id="url" ng-model="api.url">
-			</div>
-			<div class="inputField">
-				Username:<br>
-				<input id="username" ng-model="api.username">
-			</div>
-			<div class="inputField">
-				Password:<br>
-				<input id="password" ng-model="api.password">
-			</div>
-			<div class="api_submit">
-				<br>
-				<button ng-click="submit_api_form(api)">Submit</button>
-			</div>
-		</form>
-		<div class="api_detail">
-		</div>
-	</div> -->
 </div>
 <div class="version_container">
+	<div class="infra">
+		<h5>Infra Status</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
 	<div class="version_box">
 		<h5>Version</h5>
 	</div>
@@ -80,6 +72,47 @@
 <div class="charts">
 		<h5>Top 5 PODS</h5>
 		<nvd3 options="options" data="cdp_details_info"></nvd3>
-	</div>
-<api-count-pie-chart></api-count-pie-chart>
+</div>
+<div class="charts">
+	<donut-animation-chart></donut-animation-chart>
+	<!-- <api-count-pie-chart></api-count-pie-chart> -->
+</div>
+<div class="traceback_box">
+	<h5>Tracebacks</h5>
+	<ul class="traceback">
+		<li ng-repeat="traceback in tracebacks">
+			<span >Count: {{traceback.count}}</span>
+			<span>Pod: {{traceback.pod}}</span>
+			<span>Kubernetes Version: {{traceback.kubernetes-version}}</span>
+			<span>Error Message: {{traceback.error_message}}</span> 
+		</li>
+	</ul>
+</div>
+<div class="api_interface">
+		<h5>API Interface</h5>
+		<form name="api_interface" id="api_interface" novalidate>
+			<div class="inputField">
+				URL:<br>
+				<input id="url" ng-model="api.url">
+			</div>
+			<div class="inputField">
+				Username:<br>
+				<input id="username" ng-model="api.username">
+			</div>
+			<div class="inputField">
+				Password:<br>
+				<input id="password" ng-model="api.password">
+			</div>
+			<div class="inputField">
+				CDP ID:<br>
+				<input id="password" ng-model="api.cid">
+			</div>
+			<div class="api_submit">
+				<br>
+				<button ng-click="submit_api_form(api)">Submit</button>
+			</div>
+		</form>
+		<div class="api_detail">
+		</div>
+</div>
 </div>

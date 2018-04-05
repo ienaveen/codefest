@@ -49,30 +49,9 @@ app.directive('apiCountPieChart', function () {
 
 
 			datasetTotal = [
-				{ label: "Category 1", value: 19 },
+				{ label: "/v1/a", value: 19 },
 				{ label: "Category 2", value: 5 },
-				{ label: "Category 3", value: 13 },
-				{ label: "Category 4", value: 17 },
-				{ label: "Category 5", value: 19 },
-				{ label: "Category 6", value: 27 }
-			];
-
-			datasetOption1 = [
-				{ label: "Category 1", value: 22 },
-				{ label: "Category 2", value: 33 },
-				{ label: "Category 3", value: 4 },
-				{ label: "Category 4", value: 15 },
-				{ label: "Category 5", value: 36 },
-				{ label: "Category 6", value: 0 }
-			];
-
-			datasetOption2 = [
-				{ label: "Category 1", value: 10 },
-				{ label: "Category 2", value: 20 },
-				{ label: "Category 3", value: 30 },
-				{ label: "Category 4", value: 5 },
-				{ label: "Category 5", value: 12 },
-				{ label: "Category 6", value: 23 }
+				{ label: "Category 3", value: 13 }
 			];
 
 			change(datasetTotal);
@@ -233,9 +212,9 @@ app.directive('apiCountPieChart', function () {
 				<label><input type="radio" name="dataset" id="dataset" value="option2"> Option 2</label>
 			</div>
         `,
-		scope: {
-			cdpdata: "="
-		},
+		// scope: {
+		// 	cdpdata: "="
+		// },
 		restrict: 'E'
 	}
 });
