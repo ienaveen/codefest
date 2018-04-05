@@ -1,0 +1,229 @@
+{
+	"name": "Adaptive to what",
+	"children": [
+		{
+			"name": "Human Factors",
+			"children": [
+				{
+					"name": "Preferences",
+					"children": [
+						{
+							"name": "Sinclair2001",
+							"size": 1
+						}
+					]
+				},
+				{
+					"name": "Capabilities",
+					"children": [
+						{
+							"name": " Sinclair2001",
+							"size": 1
+						},
+						{
+							"name": " STricker2012",
+							"size": 1
+						},
+						{
+							"name": "Motion",
+							"children": [
+								{
+									"name": "[STricker2012]",
+									"size": 1
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "State",
+					"children": [
+						{
+							"name": "Physiological State",
+							"children": [
+								{
+									"name": "Xu2012",
+									"size": 1
+								}
+							]
+						},
+						{
+							"name": "Attention",
+							"children": [
+								{
+									"name": " Xu2012",
+									"size": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Tasks",
+			"children": [
+				{
+					"name": "User Goals",
+					"children": [
+						{
+							"name": "Beadle1997",
+							"size": 1
+						}
+					]
+				},
+				{
+					"name": "Information",
+					"children": [
+						{
+							"name": "Quantity",
+							"children": [
+								{
+									"name": "Julier2002",
+									"size": 1
+								}
+							]
+						},
+						{
+							"name": "Readabillity",
+							"children": [
+								{
+									"name": "Gabbard2005",
+									"size": 1
+								}
+							]
+						},
+						{
+							"name": "Distance",
+							"children": [
+								{
+									"name": "Uratani2005",
+									"size": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Activity/Environmental Factors",
+			"children": [
+				{
+					"name": "Place",
+					"children": [
+						{
+							"name": "Bordes2011",
+							"size": 1
+						},
+						{
+							"name": "Hervas2011",
+							"size": 1
+						}
+					]
+				},
+				{
+					"name": "Social Networks",
+					"children": [
+						{
+							"name": " Hervas2011",
+							"size": 1
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Technical Factors",
+			"children": [
+				{
+					"name": "Interactive System",
+					"children": [
+						{
+							"name": "System State",
+							"children": [
+								{
+									"name": "Bühling2012",
+									"size": 1
+								}
+							]
+						},
+						{
+							"name": "Input",
+							"children": [
+								{
+									"name": "Environment Sensors",
+									"children": [
+										{
+											"name": "Location",
+											"children": [
+												{
+													"name": "Spatial Uncertainties",
+													"children": [
+														{
+															"name": "Drexel20XX",
+															"size": 1
+														},
+														{
+															"name": "MacIntyre2007",
+															"size": 1
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "User Input",
+									"children": [
+										{
+											"name": "Mendez2007",
+											"size": 1
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Output",
+							"children": [
+								{
+									"name": "Visual Displays ",
+									"children": [
+										{
+											"name": "Spatial Arrangement",
+											"children": [
+												{
+													"name": "Rosten2005",
+													"size": 1
+												},
+												{
+													"name": "Grasset2012",
+													"size": 1
+												}
+											]
+										},
+										{
+											"name": "Composition",
+											"children": [
+												{
+													"name": "Kalkofen2009",
+													"size": 1
+												},
+												{
+													"name": "Kalkofen2013",
+													"size": 1
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
