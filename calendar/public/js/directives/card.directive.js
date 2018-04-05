@@ -4,7 +4,10 @@ app.directive('card', function () {
 
 		},
 		template: `
-            <div class="card" ng-click="cardclick()">
+			<div class="card" ng-click="cardclick()">
+				<button type="button" class="close" aria-label="Close" ng-click="clickclose()">
+					<span aria-hidden="true">&times;</span>
+				</button>
                 <div class="card-body">
                     <h4 class="card-title">{{cardobj.cdp_details.title}}</h4>
                     <p class="card-text">{{cardobj.cdp_details.desc}}</p>
@@ -16,7 +19,8 @@ app.directive('card', function () {
         `,
 		scope: {
 			cardobj: "=",
-			cardclick: "&"
+			cardclick: "&",
+			clickclose: "&"
 		},
 		restrict: 'E'
 	}
