@@ -4,7 +4,14 @@
 		margin: 20px;
 		cursor: pointer;
 		display: inline-block;
-
+		.close{
+			font-size: 2rem;
+			margin-right: 5px;
+			&:hover{
+				color: red;
+    			opacity: 1;
+			}
+		}
 		.card-body {
 			height: 240px;
 		}
@@ -12,6 +19,13 @@
 		&:hover {
 			background: #eeeeee;
 		}
+	}
+
+	.add-cdp i{
+		font-size: 6rem;
+		position: relative;
+		top: 20%;
+		left: 35%;
 	}
 }
 
@@ -523,4 +537,56 @@ tree-map{
             font-size: 11px;
             cursor: pointer
         }
+}
+
+sun-burst{
+	#sunburst{
+		margin-top: 4rem;
+	}
+
+	#main {
+		float: left;
+		width: 750px;
+	}
+
+	#sidebar {
+		float: right;
+		width: 100px;
+	}
+
+	#sequence {
+		width: 600px;
+		height: 70px;
+	}
+
+	#legend {
+		padding: 10px 0 0 3px;
+	}
+
+	#sequence text, #legend text {
+		font-weight: 600;
+		fill: #fff;
+	}
+
+	#chart {
+		position: relative;
+	}
+
+	#chart path {
+		stroke: #fff;
+	}
+
+	#explanation {
+		position: absolute;
+		top: 260px;
+		left: 305px;
+		width: 140px;
+		text-align: center;
+		color: #666;
+		z-index: -1;
+	}
+
+	#percentage {
+		font-size: 2.5em;
+	}
 }
