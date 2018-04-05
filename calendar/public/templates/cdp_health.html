@@ -1,1 +1,58 @@
-<span>cdp_health</span>
+
+<h3>CDP Health Page</h3>
+
+<div class="banner"  ng-controller="UIHealthCtrl">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Central Version and Tag</h5>
+			<h1 class="card-value">{{cdp_banner_info.active_users}}</h1>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Infra Versions</h5>
+			<h1 class="card-value">{{cdp_banner_info.total_page_visits}}</h1>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Cluster State</h5>
+			<h1 class="card-value">{{cdp_banner_info.js_errors}}</h1>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">No. of Nodes</h5>
+			<h1 class="card-value">{{cdp_banner_info.api_errors}}</h1>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Current Channel</h5>
+			<h1 class="card-value">{{cdp_banner_info.api_errors}}</h1>
+		</div>
+	</div>
+	<div class="api_interface">
+		<h5>API Interface</h5>
+		<form name="api_interface" id="api_interface" novalidate>
+			<div class="inputField">
+				URL:<br>
+				<input id="url" ng-model="api.url">
+			</div>
+			<div class="inputField">
+				Username:<br>
+				<input id="username" ng-model="api.username">
+			</div>
+			<div class="inputField">
+				Password:<br>
+				<input id="password" ng-model="api.password">
+			</div>
+			<div class="api_submit">
+				<br>
+				<button ng-click="submit_api_form(api)">Submit</button>
+			</div>
+		</form>
+		<div class="api_detail">
+		</div>
+	</div>
+</div>

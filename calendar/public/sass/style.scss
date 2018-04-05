@@ -29,6 +29,32 @@
 	padding: 1rem;
 }
 
+.api_interface{
+	margin: 30px 10px;
+	padding: 20px;
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 860px;
+    height: 380px;
+
+	.inputField{
+		float: left;
+		margin-right: 55px;
+	}
+
+	.api_submit{
+		float: left;
+		margin-left: 50px;
+	}
+
+	.api_detail{
+		margin-top: 100px;
+		height: 200px;
+		border: 1px solid rgba(0, 0, 0, 0.125);
+    	border-radius: .25rem;
+	}
+}
+
 live-bar-chart {
 	body,
 	div,
