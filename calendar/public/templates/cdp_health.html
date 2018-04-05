@@ -1,7 +1,8 @@
 
 <h3>CDP Health Page</h3>
 
-<div class="banner"  ng-controller="UIHealthCtrl">
+<div class=""  ng-controller="UIHealthCtrl">
+	<div class="banner">
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">Central Version and Tag</h5>
@@ -32,7 +33,10 @@
 			<h1 class="card-value">{{cdp_banner_info.api_errors}}</h1>
 		</div>
 	</div>
-	<div class="api_interface">
+
+	
+	
+	<!-- <div class="api_interface">
 		<h5>API Interface</h5>
 		<form name="api_interface" id="api_interface" novalidate>
 			<div class="inputField">
@@ -54,5 +58,28 @@
 		</form>
 		<div class="api_detail">
 		</div>
+	</div> -->
+</div>
+<div class="version_container">
+	<div class="version_box">
+		<h5>Version</h5>
 	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+	<div class="version_box">
+		<h5>Version</h5>
+	</div>
+</div>
+<div class="charts">
+		<h5>Top 5 PODS</h5>
+		<nvd3 options="options" data="cdp_details_info"></nvd3>
+	</div>
+<api-count-pie-chart></api-count-pie-chart>
 </div>

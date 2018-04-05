@@ -4,6 +4,7 @@
 		margin: 20px;
 		cursor: pointer;
 		display: inline-block;
+		float: left;
 		.close{
 			font-size: 2rem;
 			margin-right: 5px;
@@ -41,6 +42,16 @@
 
 .cdp_tabs {
 	padding: 1rem;
+}
+
+.charts{
+	padding: 20px;
+	margin-top:	20px;
+	margin-left: 10px;
+	float: left;
+	width: 50%;
+	border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 
 .api_interface{
@@ -225,7 +236,18 @@ line-chart {
 		}
 	}
 }
-
+.version_container{
+	margin: 30px 10px;
+	.version_box {
+		height:	auto;
+		width: 15%;
+		padding: 10px;
+		display: inline-block;
+		float: left;
+		border: 1px solid rgba(0,0,0,.125);
+    	border-radius: .25rem;
+	}
+}
 donut-animation-chart{
 
 	#donutanimationchart{
