@@ -49,7 +49,7 @@ app.controller("CDPCtrl", function($scope, $location, $http, $rootScope, socket)
 				version: "",
 				status: ""
 			},
-			ui_details: ""
+			ui_details: {}
 		};
 		$scope.postCDP(newCDP);
 	};

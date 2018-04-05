@@ -24,8 +24,8 @@ app.controller("UIAnalyticsCtrl", function (
 
 	var updateCDPData = function (data) {
 		$scope.cdp_data = data;
-		$scope.cdp_banner_info = data.banner_info;
-		$scope.cdp_graph_page_visit = formatData(data.graph_page_visit);
+		$scope.cdp_banner_info = data.ui_details.banner_info;
+		$scope.cdp_graph_page_visit = formatData(data.ui_details.graph_page_visit);
 	}
 
 	var getBannerInfo = function () {
@@ -37,6 +37,7 @@ app.controller("UIAnalyticsCtrl", function (
 	getBannerInfo();
 
 	socket.on("add", function (data) {
+		debugger;
 		updateCDPData(data);
 	});
 });

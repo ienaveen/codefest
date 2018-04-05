@@ -33,32 +33,62 @@ var parseResponse = function(cdps){
 	var obj = cdps;
 	var total_page_visits =0,js_errors = 0,api_errors = 0 ;
 	var graph_page_visit = {"NETWORKS":0,
-                    "APS":0,
-                    "RF":0,
-                    "IDS/IPS":0,
-                    "SECURITY":0,
                     "SYSTEM":0,
-                    "VPN":0,
-                    "DHCP":0,
                     "SERVICES":0,
-                    "SYSTEM":0
-                    }
-    if (obj && obj.ui_details){
+                    "DHCP":0,
+                    "VPN":0                    
+                    };
+    var graph_js_errors = {"NETWORKS":[],
+                    "SYSTEM":[],
+                    "SERVICES":[],
+                    "DHCP":[],
+                    "VPN":[]                    
+                    };
+    var graph_api_errors = {"NETWORKS":[],
+                    "SYSTEM":[],
+                    "SERVICES":[],
+                    "DHCP":[],
+                    "VPN":[]                    
+                    };
+      var graph_api_time = {"NETWORKS":[],
+                    "SYSTEM":[],
+                    "SERVICES":[],
+                    "DHCP":[],
+                    "VPN":[],  
+                    "all_apis":[]
+                    };
+    if (obj && obj.ui_details && obj.ui_details.users){    	
 		for (var i = 0 ;i< obj.ui_details.users.length; i++){
 			for (var j = 0 ;j< obj.ui_details.users[i].pages.length; j++){
 				graph_page_visit[obj.ui_details.users[i].pages[j].page_name] = graph_page_visit[obj.ui_details.users[i].pages[j].page_name] + obj.ui_details.users[i].pages[j].visited_count
 	            total_page_visits = total_page_visits + obj.ui_details.users[i].pages[j].visited_count;
-	            if (obj.ui_details.users[i].pages[j].js_exceptions)
-	            js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
-	            if (obj.ui_details.users[i].pages[j].api_exceptions)
-	            	api_errors = api_errors + obj.ui_details.users[i].pages[j].api_exceptions.length;
+
+	            if (obj.ui_details.users[i].pages[j].js_exceptions){
+	            	js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
+	            	// console.log('exceptions' + obj.ui_details.users[i].pages[j].js_exceptions[0].timestamp)
+	            	// console.log('exceptions pagename' + obj.ui_details.users[i].pages[j].page_name)
+	            	graph_js_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].js_exceptions[0]) 
+
+	            }
+	            if (obj.ui_details.users[i].pages[j].api_errors){
+	            	api_errors = api_errors + obj.ui_details.users[i].pages[j].api_errors.length;
+	            	graph_api_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_errors[0]) 
+	            }
+	            if (obj.ui_details.users[i].pages[j].api_time){
+	            	graph_api_time[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_time[0]) 
+	            	graph_api_time.all_apis.push(obj.ui_details.users[i].pages[j].api_time[0])
+	            }
 			}
 		}
 		var banner = {"active_users":obj.ui_details.active_users, "total_page_visits":total_page_visits,"js_errors":js_errors,"api_errors":api_errors}
 		//console.log('banner'+ banner)
 		console.log('graph_page_visit'+ graph_page_visit)
-		cdps.banner_info = banner;
-		cdps.graph_page_visit = graph_page_visit;
+		cdps.ui_details.banner_info = banner;
+		cdps.ui_details.graph_js_errors =  graph_js_errors;
+		cdps.ui_details.graph_page_visit = graph_page_visit;
+		cdps.ui_details.graph_api_errors = graph_api_errors;
+		cdps.ui_details.graph_api_time = graph_api_time;   
+
 	}
 	return cdps;
 }
