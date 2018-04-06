@@ -359,16 +359,16 @@ live-bar-chart {
 		height: 400px;
 	}
 	.bar {
-		fill: #56595e;;
+		fill: #4abd6b;
 	}
 	text.label {
-		fill: #f4640c;
+		fill: #fff;
 		color: #f4640c;
 		font-size: 20px;
 		font-weight: bold;
 	}
 	text.category {
-		fill: #f4640c;
+		fill: #fff;
 		font-size: 14px;
 	}
 }
@@ -866,4 +866,21 @@ api-error-chart{
 
 .chart-title{
 	font-size: 1rem;
+}
+
+api-timeout-chart{
+	path.slice{
+	stroke-width:2px;
+	}
+	polyline{
+		opacity: .3;
+		stroke: black;
+		stroke-width: 2px;
+		fill: none;
+	}
+	svg text.percent{
+		fill:white;
+		text-anchor:middle;
+		font-size:12px;
+	}
 }
