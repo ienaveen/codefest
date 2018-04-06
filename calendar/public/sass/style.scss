@@ -24,7 +24,7 @@
 				color: red;
     			opacity: 1;
 			}
-		}		
+		}
 		.card-body {
 			height: 240px;
 		}
@@ -70,13 +70,13 @@
 	}
 
 	.jumbotron{
-     	padding:10px;   
+     	padding:10px;
      	background-color: 56595e;
-     	color:f4640c;  
+     	color:f4640c;
 			}
     .image{
         background-image: url("dist/cloud.jpg");
-    } 
+    }
 	.add-cdp i{
 		font-size: 6rem;
 		position: relative;
@@ -277,6 +277,12 @@
 }
 
 live-bar-chart {
+
+
+	svg{
+		margin-top: 1rem;
+	}
+
 	body,
 	div,
 	span,
@@ -392,16 +398,16 @@ live-bar-chart {
 		height: 400px;
 	}
 	.bar {
-		fill: #eaeaea;
+		fill: #4abd6b;
 	}
 	text.label {
-		fill: #777777;
-		color: #777777;
+		fill: #fff;
+		color: #f4640c;
 		font-size: 20px;
 		font-weight: bold;
 	}
 	text.category {
-		fill: #666666;
+		fill: #fff;
 		font-size: 14px;
 	}
 }
@@ -842,9 +848,9 @@ js-errors{
 	stroke: steelblue;
 	}
 }
-.ui_health{     
+.ui_health{
 .uib-tab.active a{
-        background-color: #56595e;
+    background-color: #56595e;
     color: #f4640c;
 }
 .hand {
@@ -854,16 +860,16 @@ js-errors{
 	color: f4640c;
 	}
 	.jumbotron{
-     	padding:10px;   
+     	padding:10px;
      	background-color: 56595e;
-     	color:f4640c;  
+     	color:f4640c;
      	text-transform: uppercase;
      	i{
      	    font-size: 3rem;
      	}
 	}
 	.cdp_id{
-	    display: inline-block;    
+	    display: inline-block;
     	margin-left: 700px;
     	}
 }
@@ -894,5 +900,85 @@ api-error-chart{
 
 	#apidesc{
 		height: 50px;
+	}
+}
+
+.chart-title{
+	font-size: 1rem;
+}
+
+api-timeout-chart{
+	path.slice{
+	stroke-width:2px;
+	}
+	polyline{
+		opacity: .3;
+		stroke: black;
+		stroke-width: 2px;
+		fill: none;
+	}
+	svg text.percent{
+		fill:white;
+		text-anchor:middle;
+		font-size:12px;
+	}
+	#apitimeoutchart{
+		left: 20%;
+		position: relative;
+		margin-top: 10%;
+	}
+	.apitimeout .card-body{
+		height: 500px;
+	}
+}
+
+.api-timeout{
+	#chart{
+	text-align: center;
+	padding-top: 50px;
+	}
+	.arc text {
+	font: 10px sans-serif;
+	text-anchor: middle;
+	}
+
+	.pieBox{
+		display: inline-block;
+		height: auto;
+	}
+
+	#mainTooltip {
+		position: absolute;
+		min-width :90px;
+		height: 40px;
+		padding: 0 0 25px 0;
+		background-color: rgba(0,0,0,0.6);
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 50px;
+		-webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+		-moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+		box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+		pointer-events: none;
+		fill: #fff;
+		color: #fff;
+		text-anchor: middle;
+		text-align: center;
+		font-weight: bold;
+		z-index: 9999;
+	}
+	#mainTooltip:before {
+		border: solid;
+		border-color: rgba(0,0,0,0.6) transparent;
+		border-width: 10px 10px 0 10px;
+		top: 100%;
+		content: "";
+		left: 43%;
+		position: absolute;
+		z-index: 99;
+	}
+	#mainTooltip.hidden {
+		display: none;
 	}
 }

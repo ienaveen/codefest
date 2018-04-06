@@ -168,7 +168,9 @@ app.directive('jsErrors', function () {
 
 		},
 		template: `
-            <div id="jserrorschart"></div>
+			<div id="jserrorschart">
+				<h1 class="chart-title">JS Exceptions Chart</h1>
+			</div>
         `,
 		scope: {
 			jserrordata: "="
