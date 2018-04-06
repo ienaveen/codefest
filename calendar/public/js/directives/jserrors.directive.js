@@ -12,11 +12,11 @@ app.directive('jsErrors', function () {
 				formatCurrency = function (d) { return "$" + formatValue(d); };
 
 			var pageNames = {
-				"NETWORKS": "1",
-				"SYSTEM": "2",
-				"DHCP": "3",
-				"SERVICES": "4",
-				"VPN": "5"
+				"NETWORKS": 1,
+				"SYSTEM": 2,
+				"DHCP": 3,
+				"SERVICES": 4,
+				"VPN": 5
 			}
 
 			var jserrordata = [
@@ -71,58 +71,61 @@ app.directive('jsErrors', function () {
 
 			d3.tsv("data.tsv", function (error, data1) {
 
-				var data = jserrordata;
-				data.forEach(function (d) {
-					d.page_name_id = +d.page_name_id;
-					d.timestamp = +d.timestamp;
+				scope.$watch("jserrordata", function (newData, oldData) {
+					var data = newData;
+
+					data.forEach(function (d) {
+						d.page_name_id = pageNames[d.page_name]
+						d.timestamp = +d.timestamp;
+					});
+
+					data.sort(function (a, b) {
+						return a.timestamp - b.timestamp;
+					});
+
+					x.domain([data[0].timestamp, data[data.length - 1].timestamp]);
+					y.domain(d3.extent(data, function (d) { return d.page_name_id; }));
+
+					svg.append("g")
+						.attr("class", "x axis")
+						.attr("transform", "translate(0," + height + ")")
+						.call(xAxis);
+
+					svg.append("g")
+						.attr("class", "y axis")
+						.call(yAxis)
+						.append("text")
+						.attr("transform", "rotate(-90)")
+						.attr("y", 6)
+						.attr("dy", ".71em")
+						.style("text-anchor", "end")
+						.text("PAGES");
+
+					svg.append("path")
+						.datum(data)
+						.attr("class", "line")
+						.attr("d", line);
+
+					var focus = svg.append("g")
+						.attr("class", "focus")
+						.style("display", "none");
+
+					focus.append("circle")
+						.attr("r", 4.5);
+
+					focus.append("text")
+						.attr("x", 9)
+						.attr("dy", ".35em");
+
+					svg.append("rect")
+						.attr("class", "overlay")
+						.attr("width", width)
+						.attr("height", height)
+						.on("mouseover", function () { focus.style("display", null); })
+						.on("mouseout", function () { focus.style("display", "none"); })
+						.on("mousemove", mousemove)
+						.on("click", click)
 				});
-
-				data.sort(function (a, b) {
-					return a.timestamp - b.timestamp;
-				});
-
-				x.domain([data[0].timestamp, data[data.length - 1].timestamp]);
-				y.domain(d3.extent(data, function (d) { return d.page_name_id; }));
-
-				svg.append("g")
-					.attr("class", "x axis")
-					.attr("transform", "translate(0," + height + ")")
-					.call(xAxis);
-
-				svg.append("g")
-					.attr("class", "y axis")
-					.call(yAxis)
-					.append("text")
-					.attr("transform", "rotate(-90)")
-					.attr("y", 6)
-					.attr("dy", ".71em")
-					.style("text-anchor", "end")
-					.text("PAGES");
-
-				svg.append("path")
-					.datum(data)
-					.attr("class", "line")
-					.attr("d", line);
-
-				var focus = svg.append("g")
-					.attr("class", "focus")
-					.style("display", "none");
-
-				focus.append("circle")
-					.attr("r", 4.5);
-
-				focus.append("text")
-					.attr("x", 9)
-					.attr("dy", ".35em");
-
-				svg.append("rect")
-					.attr("class", "overlay")
-					.attr("width", width)
-					.attr("height", height)
-					.on("mouseover", function () { focus.style("display", null); })
-					.on("mouseout", function () { focus.style("display", "none"); })
-					.on("mousemove", mousemove)
-					.on("click", click)
 
 				function mousemove() {
 					var x0 = x.invert(d3.mouse(this)[0]),
@@ -168,7 +171,7 @@ app.directive('jsErrors', function () {
             <div id="jserrorschart"></div>
         `,
 		scope: {
-			cdpdata: "="
+			jserrordata: "="
 		},
 		restrict: 'E'
 	}
