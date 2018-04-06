@@ -44,6 +44,12 @@ app.directive('apiErrorChart', function () {
 			d3.tsv("crimea.tsv", function (error, crimea) {
 
 				scope.$watch("apierrors", function (newData, oldData) {
+					// debugger;
+
+					if(!newData){
+						return;
+					}
+
 					var newdata = [];
 					var apierrors = newData;
 
@@ -104,7 +110,8 @@ app.directive('apiErrorChart', function () {
 					});
 
 					rect.on("mouseout", function (d) {
-						// divTooltip.style("display", "none");
+						var desc = d3.select("#apierrorschart #apidesc");
+						desc.html("");
 					});
 				});
 			});

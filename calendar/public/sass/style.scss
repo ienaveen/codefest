@@ -932,7 +932,7 @@ api-timeout-chart{
 	}
 }
 
-.api-timeout{
+api-timeout{
 	#chart{
 	text-align: center;
 	padding-top: 50px;
@@ -966,6 +966,7 @@ api-timeout-chart{
 		text-anchor: middle;
 		text-align: center;
 		font-weight: bold;
+		font-size: 11px;
 		z-index: 9999;
 	}
 	#mainTooltip:before {
@@ -981,4 +982,18 @@ api-timeout-chart{
 	#mainTooltip.hidden {
 		display: none;
 	}
+}
+
+
+.apitimeout .card-body{
+	height: 500px;
+}
+
+.ui_analytics_charts .sunburstchart{
+	width: 65%;
+}
+
+.ui_analytics_charts .vbarchart{
+	width: 25%;
+    height: 550px;
 }

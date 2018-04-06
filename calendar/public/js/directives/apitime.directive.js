@@ -3,12 +3,12 @@ app.directive('apiTimeout', function () {
 		link: function (scope, element, attr) {
 
 
-			scope.$watch("apitimeout", function (newData, oldData) {
-				if(!newData){
-					return;
-				}
 
-				var data = newData;
+			scope.$watch("apitimeout", function (newData, oldData) {
+				// debugger;
+				if (!!(d3.select("#apitimeoutchart svg"))){
+					d3.select("#apitimeoutchart svg").remove();
+				}
 
 				var width = 300,
 					height = 300,
@@ -59,6 +59,12 @@ app.directive('apiTimeout', function () {
 				feMerge.append("feMergeNode")
 					.attr("in", "SourceGraphic");
 
+				if (!newData) {
+					return;
+				}
+
+				var data = newData;
+
 				var g = svg.selectAll("#apitimeoutchart .arc")
 					.data(pie(data))
 					.enter().append("g")
@@ -66,7 +72,7 @@ app.directive('apiTimeout', function () {
 
 				g.append("path")
 					.attr("d", arc)
-					.style("fill", function (d) { return color(d.data.time); })
+					.style("fill", function (d) { return color(d.data.url); })
 					.on("mousemove", function (d) {
 						d3.select(this)
 							.attr("stroke", "#fff")
@@ -121,7 +127,7 @@ app.directive('apiTimeout', function () {
 		},
 		template: `
 			<div id="apitimeoutchart">
-				<h1 class="chart-title">API Timeout chart</h1>
+				<h1 class="chart-title">Top 5 API Performance</h1>
 				<div id="chart"></div>
 				<div id="mainTooltip" class="hidden">
 					<p><span id="value"></span></p>
