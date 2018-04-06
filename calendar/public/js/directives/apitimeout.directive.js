@@ -7,25 +7,33 @@ app.directive('apiTimeoutChart', function () {
 			var updatecolors = function(arr) {
 				arr.forEach(function(item, index){
 					item['color'] = colors[index];
+					item['value'] = item['time'];
 				});
 
 				return arr;
 			}
 
 			scope.$watch("apitimeout", function (newData, oldData) {
-				debugger;
 				newData = updatecolors(newData)
-				Donut3D.draw("timeoutdonut", newData, 150, 150, 130, 100, 30, 0.4);
-				// Donut3D.transition("timeoutdonut", newData, 130, 100, 30, 0.4);
+				if(!oldData){
+					Donut3D.draw("timeoutdonut", scope.apitimeout, 150, 150, 130, 100, 30, 0.4);
+				}else{
+					Donut3D.transition("timeoutdonut", newData, 130, 100, 30, 0.4);
+				}
 			});
 
-			var svg = d3.select("#apitimeoutchart").append("svg").attr("width", 700).attr("height", 300);
+			var svg = d3.select("#apitimeoutchart").append("svg").attr("width", 400).attr("height", 300);
 
 			svg.append("g").attr("id", "timeoutdonut");
 
+			var path = d3.selectAll("#apitimeoutchart #timeoutsummary");
+
 		},
 		template: `
-            <div id="apitimeoutchart"></div>
+			<div id="apitimeoutchart">
+				<h1 class="chart-title">API Timeout chart</h1>
+				<div id="timeoutsummary"></div>
+			</div>
         `,
 		scope: {
 			apitimeout: "="

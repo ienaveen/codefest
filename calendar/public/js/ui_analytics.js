@@ -48,7 +48,6 @@ app.controller("UIAnalyticsCtrl", function (
 		$scope.graph_js_errors = data.ui_details.graph_js_errors;
 		$scope.graph_api_errors = data.ui_details.graph_api_errors;
 		$scope.graph_api_time = formatAPItimeoutData(data.ui_details.graph_api_time);
-
 	}
 
 	var getBannerInfo = function () {
