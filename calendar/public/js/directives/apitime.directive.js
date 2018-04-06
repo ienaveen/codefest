@@ -127,7 +127,7 @@ app.directive('apiTimeout', function () {
 		},
 		template: `
 			<div id="apitimeoutchart">
-				<h1 class="chart-title">Top 5 API Performance</h1>
+				<h1 class="chart-title">Top 5 API Delayed Response</h1>
 				<div id="chart"></div>
 				<div id="mainTooltip" class="hidden">
 					<p><span id="value"></span></p>
