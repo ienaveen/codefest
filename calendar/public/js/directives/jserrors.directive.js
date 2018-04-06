@@ -70,8 +70,6 @@ app.directive('jsErrors', function () {
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			d3.tsv("data.tsv", function (error, data1) {
-				debugger;
-				// if (error) throw error;
 
 				var data = jserrordata;
 				data.forEach(function (d) {

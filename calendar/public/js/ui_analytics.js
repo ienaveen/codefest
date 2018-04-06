@@ -3,7 +3,8 @@ app.controller("UIAnalyticsCtrl", function (
 	$location,
 	$rootScope,
 	$http,
-	socket
+	socket,
+	$localStorage
 ) {
 
 	var formatData = function (data) {
@@ -29,7 +30,7 @@ app.controller("UIAnalyticsCtrl", function (
 	}
 
 	var getBannerInfo = function () {
-		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function (res) {
+		$http.get("/coc/cdps/" + $localStorage.selectedCDPID).then(function (res) {
 			updateCDPData(res.data[0]);
 		});
 	};
