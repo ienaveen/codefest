@@ -665,11 +665,11 @@ sun-burst{
 
 	#sidebar {
 		float: right;
-		width: 100px;
+		width: 250px;
 	}
 
 	#sequence {
-		width: 600px;
+		width: 1200px;
 		height: 70px;
 	}
 
@@ -702,5 +702,38 @@ sun-burst{
 
 	#percentage {
 		font-size: 2.5em;
+	}
+}
+
+js-errors{
+	#jserrorschart {
+	font: 10px sans-serif;
+	}
+
+	.axis path,
+	.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	}
+
+	.x.axis path {
+	display: none;
+	}
+
+	.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1.5px;
+	}
+
+	.overlay {
+	fill: none;
+	pointer-events: all;
+	}
+
+	.focus circle {
+	fill: none;
+	stroke: steelblue;
 	}
 }
