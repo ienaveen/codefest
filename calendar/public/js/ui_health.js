@@ -91,11 +91,18 @@ app.controller("UIHealthCtrl", function(
 	};
 
 	$scope.submit_api_form = function(data){
+		$scope.postAPIGW(data)
 
 	}
+	$scope.postAPIGW = function(newCDP) {
+		$http.post("/coc/apigw", newCDP).then(function(res) {
+			//$scope.cdps.push(newCDP);
+			//$scope.$apply();
+		});
+	};
 	getBannerInfo();
 
 	socket.on("add", function(data) {
-		$scope.cdp_banner_info = data.banner_info;
+		$scope.apigw_res = data.ui_details.apigw_res;
 	});
 });

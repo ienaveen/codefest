@@ -125,6 +125,17 @@ var post_python = function(postJson){
 	     console.log('python resp'+ response);
 	});
 }
+var post_apigw = function(postJson){
+	console.log('into post apigw' + postJson);
+	request({
+    url: "http://10.22.136.123:5000/api_gw",
+    method: "POST",
+    json: true,   
+    body: postJson
+	}, function (error, response, body){
+	     console.log('python resp'+ response);
+	});
+}
 
 // var obj
 // send_sms(obj)
@@ -157,6 +168,11 @@ MongoClient.connect('mongodb://10.22.136.123:27017/hack', function(err1, client)
 			console.log("/coc/cdps"+cdps);
 			response.send(cdps)
 			});
+	});
+	app.post('/coc/apigw', function(request, response){
+    	console.log('into post /coc/apigw'+ util.inspect(request.body))
+        post_apigw(request.body)
+    	
 	});
     app.get('/', function(request, response){
     	response.sendfile(path.join(__dirname, 'views' ,'index.html'));
