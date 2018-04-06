@@ -2,7 +2,7 @@ app.directive('sunBurst', function () {
 	return {
 		link: function (scope, element, attr) {
 			// Dimensions of sunburst.
-			var width = 1200;
+			var width = 1000;
 			var height = 600;
 			var radius = Math.min(width, height) / 2;
 
@@ -85,7 +85,7 @@ app.directive('sunBurst', function () {
 				.attr("height", height)
 				.append("svg:g")
 				.attr("id", "container")
-				.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+				.attr("transform", "translate(300," + height / 2 + ")");
 
 			var partition = d3.layout.partition()
 				.size([2 * Math.PI, radius * radius])
@@ -110,8 +110,8 @@ app.directive('sunBurst', function () {
 
 				// Basic setup of page elements.
 				initializeBreadcrumbTrail();
-				drawLegend();
-				d3.select("#sunburst #togglelegend").on("click", toggleLegend);
+				// drawLegend();
+				// d3.select("#sunburst #togglelegend").on("click", toggleLegend);
 
 				// Bounding circle underneath the sunburst, to make it easier to detect
 				// when the mouse leaves the parent g.
@@ -284,9 +284,9 @@ app.directive('sunBurst', function () {
 					w: 200, h: 30, s: 3, r: 3
 				};
 
-				var legend = d3.select("#sunburst #legend").append("svg:svg")
-					.attr("width", li.w)
-					.attr("height", d3.keys(colors).length * (li.h + li.s));
+				// var legend = d3.select("#sunburst #legend").append("svg:svg")
+				// 	.attr("width", li.w)
+				// 	.attr("height", d3.keys(colors).length * (li.h + li.s));
 
 				var g = legend.selectAll("#sunburst g")
 					.data(d3.entries(colors))
@@ -373,10 +373,6 @@ app.directive('sunBurst', function () {
 					of visits begin with this sequence of pages
 					</div>
 				</div>
-				</div>
-				<div id="sidebar">
-				<input type="checkbox" id="togglelegend"> Legend<br/>
-				<div id="legend" style="visibility: hidden;"></div>
 				</div>
 			</div>
         `,
