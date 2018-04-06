@@ -803,13 +803,27 @@ js-errors{
 	stroke: steelblue;
 	}
 }
-.ui_health{
+.ui_health{     
+.uib-tab.active {
+        background-color: #56595e;
+    color: #f4640c;
+}
+ a{
+	color: f4640c;
+	}
 	.jumbotron{
      	padding:10px;   
      	background-color: 56595e;
      	color:f4640c;  
      	text-transform: uppercase;
-			}
+     	i{
+     	    font-size: 3rem;
+     	}
+	}
+	.cdp_id{
+	    display: inline-block;    
+    	margin-left: 700px;
+    	}
 }
 .ui_analytics_charts{
 	.card {

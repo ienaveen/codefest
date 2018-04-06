@@ -1,8 +1,7 @@
 <div ng-controller="UIHealthCtrl" class="ui_health">
     <div class="jumbotron">
-        <center> 
-            <h1 ng-bind="selectedCDPID"></h1> 
-        </center>
+            <span><i class="large material-icons">home</i></span>
+            <span><h1 class="cdp_id" ng-bind="selectedCDPID"></h1> </span>
     </div>
     <uib-tabset active="active" class="cdp_tabs">
         <uib-tab index="0">
