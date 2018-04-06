@@ -14,9 +14,9 @@ app.directive('jsErrors', function () {
 			var pageNames = {
 				"NETWORKS": "1",
 				"SYSTEM": "2",
-				"APS": "3",
+				"DHCP": "3",
 				"SERVICES": "4",
-				"RF": "5"
+				"VPN": "5"
 			}
 
 			var jserrordata = [

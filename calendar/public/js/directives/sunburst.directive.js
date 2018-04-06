@@ -2,23 +2,79 @@ app.directive('sunBurst', function () {
 	return {
 		link: function (scope, element, attr) {
 			// Dimensions of sunburst.
-			var width = 750;
+			var width = 1200;
 			var height = 600;
 			var radius = Math.min(width, height) / 2;
 
 			// Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 			var b = {
-				w: 75, h: 30, s: 3, t: 10
+				w: 200, h: 30, s: 3, t: 10
 			};
 
 			// Mapping of step names to colors.
 			var colors = {
-				"home": "#5687d1",
-				"product": "#7b615c",
-				"search": "#de783b",
-				"account": "#6ab975",
-				"other": "#a173d1",
-				"end": "#bbbbbb"
+				"Clarity": "#F0F8FF",
+				"HealthChecks": "#FAEBD7",
+				"ClientOverview": "#7FFFD4",
+				"NetworkOverview": "#0000FF",
+				"Alerts": "#8A2BE2",
+				"Acknowledged": "#A52A2A",
+				"Clarity": "#DEB887",
+				"WirelessManagement": "#5F9EA0",
+				"AccessPoints": "#7FFF0vi0",
+				"NetworkOverview": "#FF7F50",
+				"Alerts": "#6495ED",
+				"Acknowledged": "#DC143C",
+				"APsUsage": "#00FFFF",
+				"ConfigureAlerts": "#00008B",
+				"SwitchesUsage": "#008B8B",
+				"ListOfUpSwitches": "#B8860B",
+				"Switches": "#DA70D6",
+				"SwitchDetail": "#006400",
+				"EventLogs": "#8B008B",
+				"ListOfDownAPs": "#FF8C00",
+				"APDetail": "#8FBC8F",
+				"Clients": "#2F4F4F",
+				"Wireless": "#00BFFF",
+				"Stacks": "#228B22",
+				"StackDetail": "#FFD700",
+				"WirelessNetworks": "#ADFF2F",
+				"GlobalSettings": "#4B0082",
+				"Users&Roles": "#E0FFFF",
+				"Users": "#20B2AA",
+				"NewUser": "#87CEFA",
+				"Troubleshooting": "#00FF00",
+				"SwitchMAS": "#66CDAA",
+				"Map": "#00FA9A",
+				"List": "#48D1CC",
+				"Wireless": "#808000",
+				"Wired": "#6B8E23",
+				"Maintenance": "#FFA500",
+				"FirmwareVirtualControllers": "#FF4500",
+				"FirmwareSwitchMAS": "#98FB98",
+				"APIGateway": "#FF0000",
+				"AuthorizedApps&Token": "#BC8F8F",
+				"AddApps&Tokens": "#4169E1",
+				"Interface": "#FA8072",
+				"Labels": "#F4A460",
+				"AddLabel": "#2E8B57",
+				"Info": "#708090",
+				"DeviceInventory": "#00FF7F",
+				"AddDevices": "#B0E0E6",
+				"Insights": "#FF6347",
+				"Users&Roles-": "#F5DEB3",
+				"Roles": "#9ACD32",
+				"NewRole": "#FFFF00",
+				"SwitchDetail": "#F5DEB3",
+				"SubscriptionAssignment": "#EE82EE",
+				"ApplySubscriptions": "#40E0D0",
+				"WirelessManagement": "#D8BFD8",
+				"ConfigurationDashboard": "#008080",
+				"FirmwareSwitchAruba": "#D2B48C",
+				"SwitchAruba": "#4682B4",
+				"ManageGroups": "#F4A460",
+				"NewGroup": "#FA8072",
+				"Clients": "#BC8F8F"
 			};
 
 			// Total size of all segments; we set this later, after loading the data.
@@ -43,7 +99,7 @@ app.directive('sunBurst', function () {
 
 			// Use d3.text and d3.csv.parseRows so that we do not need to have a header
 			// row, and can receive the csv as an array of arrays.
-			d3.text("visit-sequences.csv", function (text) {
+			d3.text("flows.csv", function (text) {
 				var csv = d3.csv.parseRows(text);
 				var json = buildHierarchy(csv);
 				createVisualization(json);
@@ -225,7 +281,7 @@ app.directive('sunBurst', function () {
 
 				// Dimensions of legend item: width, height, spacing, radius of rounded rect.
 				var li = {
-					w: 75, h: 30, s: 3, r: 3
+					w: 200, h: 30, s: 3, r: 3
 				};
 
 				var legend = d3.select("#sunburst #legend").append("svg:svg")
@@ -312,7 +368,7 @@ app.directive('sunBurst', function () {
 				<div id="main">
 				<div id="sequence"></div>
 				<div id="chart">
-					<div id="explanation" style="visibility: hidden;">
+					<div id="explanation">
 					<span id="percentage"></span><br/>
 					of visits begin with this sequence of pages
 					</div>
