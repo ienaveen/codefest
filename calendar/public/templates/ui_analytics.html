@@ -5,25 +5,25 @@
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">Active Users</h5>
-				<h1 class="card-value">{{cdp_banner_info.active_users}}</h1>
+				<h1 class="card-value">{{cdp_banner_info.active_users  ? cdp_banner_info.active_users : 0}}</h1>
 			</div>
 		</div>
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">Total Page Visits</h5>
-				<h1 class="card-value">{{cdp_banner_info.total_page_visits}}</h1>
+				<h1 class="card-value">{{cdp_banner_info.total_page_visits ? cdp_banner_info.total_page_visits : 0}}</h1>
 			</div>
 		</div>
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">JS Errors</h5>
-				<h1 class="card-value">{{cdp_banner_info.js_errors}}</h1>
+				<h1 class="card-value">{{cdp_banner_info.js_errors ? cdp_banner_info.js_errors : 0}}</h1>
 			</div>
 		</div>
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">API Errors</h5>
-				<h1 class="card-value">{{cdp_banner_info.api_errors}}</h1>
+				<h1 class="card-value">{{cdp_banner_info.api_errors ? cdp_banner_info.api_errors : 0}}</h1>
 			</div>
 		</div>
 	</div>

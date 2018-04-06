@@ -4,12 +4,12 @@ app.directive('animatedVBarChart', function () {
 			d3.select("#animatedvbarchart input[value=\"total\"]").property("checked", true);
 
 			datasetTotal = [
-				{ label: "Category 1", value: 19 },
-				{ label: "Category 2", value: 5 },
-				{ label: "Category 3", value: 13 },
-				{ label: "Category 4", value: 17 },
-				{ label: "Category 5", value: 19 },
-				{ label: "Category 6", value: 27 }
+				{ label: "AirGroup", value: 19 },
+				{ label: "UCC", value: 5 },
+				{ label: "NMS", value: 27 },
+				{ label: "Clarity", value: 13 },
+				{ label: "Clickstream", value: 17 },
+				{ label: "PA", value: 19 }
 			];
 
 			datasetOption1 = [
@@ -102,7 +102,7 @@ app.directive('animatedVBarChart', function () {
 					.attr("y", 6)
 					.attr("dy", ".71em")
 					.style("text-anchor", "end")
-					.text("Distribution %");
+					.text("No. of visited users");
 
 				var bar = svg.selectAll(".bar")
 					.data(dataset, function (d) { return d.label; });
@@ -138,9 +138,7 @@ app.directive('animatedVBarChart', function () {
 		},
 		template: `
 			<div id="animatedvbarchart">
-				<label><input type="radio" name="dataset" id="dataset" value="total" checked> Total</label>
-				<label><input type="radio" name="dataset" id="dataset" value="option1"> Option 1</label>
-				<label><input type="radio" name="dataset" id="dataset" value="option2"> Option 2</label>
+				<h1 class="chart-title">Visited users per app</h1>
 			</div>
         `,
 		scope: {

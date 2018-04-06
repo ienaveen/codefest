@@ -185,6 +185,7 @@ app.directive('liveBarChart', function () {
 		},
 		template: `
 			<div id="livebarchart">
+				<h1 class="chart-title">Page Visits Chart</h1>
 			</div>
         `,
 		scope: {
