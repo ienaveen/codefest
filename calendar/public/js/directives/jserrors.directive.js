@@ -41,7 +41,7 @@ app.directive('jsErrors', function () {
 				}
 			];
 
-			jserrordata.forEach(function(arrVal) {
+			jserrordata.forEach(function (arrVal) {
 				arrVal.page_name_id = pageNames[arrVal.page_name];
 			})
 
@@ -73,7 +73,7 @@ app.directive('jsErrors', function () {
 
 				scope.$watch("jserrordata", function (newData, oldData) {
 					// debugger;
-					if(!newData){
+					if (!newData) {
 						return;
 					}
 
@@ -130,45 +130,49 @@ app.directive('jsErrors', function () {
 						.on("mouseout", function () { focus.style("display", "none"); })
 						.on("mousemove", mousemove)
 						.on("click", click)
+
+					function mousemove() {
+						var data = scope.jserrordata;
+						var x0 = x.invert(d3.mouse(this)[0]),
+							i = bisectDate(data, x0, 1),
+							d0 = data[i - 1],
+							d1 = data[i],
+							d = x0 - d0.timestamp > d1.timestamp - x0 ? d1 : d0;
+						focus.attr("transform", "translate(" + x(d.timestamp) + "," + y(d.page_name_id) + ")");
+						focus.select("#jserrorschart text").text(d.page_name + ": " + d.message);
+					}
+
+					function click() {
+						var data = scope.jserrordata;
+						var x0 = x.invert(d3.mouse(this)[0]),
+							i = bisectDate(data, x0, 1),
+							d0 = data[i - 1],
+							d1 = data[i],
+							d = x0 - d0.timestamp > d1.timestamp - x0 ? d1 : d0;
+
+
+						swal({
+							title: 'Error - ' + d.message,
+							html: 'Found by user <b>' + d.user_name + '</b> in page <b>' + d.page_name + "</b><br>You want to create a jira ticket for this",
+							type: 'warning',
+							showCancelButton: true,
+							confirmButtonColor: '#3085d6',
+							cancelButtonColor: '#d33',
+							confirmButtonText: 'Yes, Create the Jira Issue!'
+						}).then((result) => {
+							if (result.value) {
+								swal(
+									'Created!',
+									'Jira ticket 78965 is created',
+									'success'
+								)
+							}
+						});
+						// alert("create bug for " + d.message );
+					}
 				});
 
-				function mousemove() {
-					var x0 = x.invert(d3.mouse(this)[0]),
-						i = bisectDate(data, x0, 1),
-						d0 = data[i - 1],
-						d1 = data[i],
-						d = x0 - d0.timestamp > d1.timestamp - x0 ? d1 : d0;
-					focus.attr("transform", "translate(" + x(d.timestamp) + "," + y(d.page_name_id) + ")");
-					focus.select("#jserrorschart text").text(d.page_name + ": " + d.message);
-				}
 
-				function click() {
-					var x0 = x.invert(d3.mouse(this)[0]),
-						i = bisectDate(data, x0, 1),
-						d0 = data[i - 1],
-						d1 = data[i],
-						d = x0 - d0.timestamp > d1.timestamp - x0 ? d1 : d0;
-
-
-					swal({
-						title: 'Error - ' + d.message,
-						html: 'Found by user <b>' + d.user_name + '</b> in page <b>' + d.page_name + "</b><br>You want to create a jira ticket for this",
-						type: 'warning',
-						showCancelButton: true,
-						confirmButtonColor: '#3085d6',
-						cancelButtonColor: '#d33',
-						confirmButtonText: 'Yes, Create the Jira Issue!'
-					}).then((result) => {
-						if (result.value) {
-							swal(
-								'Created!',
-								'Jira ticket 78965 is created',
-								'success'
-							)
-						}
-					});
-					// alert("create bug for " + d.message );
-				}
 			});
 
 		},
