@@ -1,14 +1,13 @@
-
-<div >
+<div class="cdpHealth" ng-controller="UIHealthCtrl">
+<div>
 	<h3 class="cdp_button">CDP Health Page</h3>
-	<button type="button" class="btn btn-primary cdp_button">Upgrade</button>
-	<button type="button" class="btn btn-primary cdp_button">Restart Pod</button>
-	<button type="button" class="btn btn-primary cdp_button"> Download Snapshot</button>
-	<button type="button" class="btn btn-primary cdp_button">Trigger PLV</button>
+	<button type="button" class="btn btn-primary cdp_button" ng-click="upgrade()">Upgrade</button>
+	<button type="button" class="btn btn-primary cdp_button" ng-click="restart_pod()">Restart Pod</button>
+	<button type="button" class="btn btn-primary cdp_button" ng-click="download_snapshot()"> Download Snapshot</button>
+	<button type="button" class="btn btn-primary cdp_button" ng-click="trigger_plv()">Trigger PLV</button>
 </div>
 
-<div class="cdpHealth"  ng-controller="UIHealthCtrl">
-	<div class="banner">		
+<div class="banner">
 	<div class="card">
 		<div class="card-body">
 			<h2 class="card-title">Status</h2>
@@ -20,13 +19,13 @@
 			<h2 class="card-title">Version</h2>
 			<h5 class="card-value">{{cdp_details.version}}</h5>
 		</div>
-	</div>	
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<h2 class="card-title">Channel</h2>
 			<h5 class="card-value">{{cdp_details.channel_name}}</h5>
 		</div>
-	</div>	
+	</div>
 	<div class="card">
 		<div class="card-body">
 			<h2 class="card-title">Nodes</h2>
@@ -38,25 +37,25 @@
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.Postgres[1] == 'Up','color-red':cdp_details.infra_versions.Postgres[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">Postgres</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.Postgres[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.Postgres[0]}}</h5>
 		</div>
 	</div>
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.Redis[1] == 'Up','color-red':cdp_details.infra_versions.Redis[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">Redis</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.Redis[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.Redis[0]}}</h5>
 		</div>
 	</div>
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.RabbitMQ[1] == 'Up','color-red':cdp_details.infra_versions.RabbitMQ[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">RabbitMQ</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.RabbitMQ[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.RabbitMQ[0]}}</h5>
 		</div>
 	</div>
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.Hazelcast[1] == 'Up','color-red':cdp_details.infra_versions.Hazelcast[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">Hazelcast</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.Hazelcast[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.Hazelcast[0]}}</h5>
 		</div>
 	</div>
 	<!-- <div class="card">
@@ -68,19 +67,19 @@
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.K8S[1] == 'Up','color-red':cdp_details.infra_versions.K8S[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">K8S</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.K8S[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.K8S[0]}}</h5>
 		</div>
 	</div>
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.Alembic[1] == 'Up','color-red':cdp_details.infra_versions.Alembic[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">Alembic</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.Alembic[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.Alembic[0]}}</h5>
 		</div>
 	</div>
 	<div class="card" ng-class="{'color-green':cdp_details.infra_versions.Cassandra[1] == 'Up','color-red':cdp_details.infra_versions.Cassandra[1] == 'Down'}">
 		<div class="card-body">
 			<h2 class="card-title">Cassandra</h2>
-<h5 class="card-value">{{cdp_details.infra_versions.Cassandra[0]}}</h5>
+			<h5 class="card-value">{{cdp_details.infra_versions.Cassandra[0]}}</h5>
 		</div>
 	</div>
 </div>
@@ -95,7 +94,7 @@
 		<td> {{cdp_details.infra_versions.RabbitMQ[0] + '(' + cdp_details.infra_versions.RabbitMQ[1] + ')' }} </td>
 		<td>Hazelcast</td>
 		<td> {{cdp_details.infra_versions.Hazelcast[0] + '(' + cdp_details.infra_versions.Hazelcast[1] + ')' }} </td>
-		
+
 	</tr>
 	<tr>
 		<td>CoreOS</td>
@@ -110,8 +109,8 @@
 	</table>
 </center> -->
 <div class="charts">
-		<h5>Top 5 Faulty PODS</h5>
-		<nvd3 options="options" data="cdp_details_info"></nvd3>
+	<h5>Top 5 Faulty PODS</h5>
+	<nvd3 options="options" data="cdp_details_info"></nvd3>
 </div>
 <div class="charts">
 	<h5>Top 5 NBAPIs</h5>
@@ -122,35 +121,39 @@
 	<h5>Tracebacks</h5>
 	<ul class="traceback">
 		<li ng-repeat="traceback in tracebacks">
-			<span >Count: {{traceback.count}}</span>
+			<span>Count: {{traceback.count}}</span>
 			<span>Pod: {{traceback.pod}}</span>
 			<span>Kubernetes Version: {{traceback.kubernetes-version}}</span>
-			<span>Error Message: {{traceback.error_message}}</span> 
+			<span>Error Message: {{traceback.error_message}}</span>
 		</li>
 	</ul>
 </div>
 <div class="api_interface">
-		<h5>API-GW Interface</h5>
-		<form name="api_interface" id="api_interface" novalidate>
-			<div class="inputField">
-				URL:<br>
-				<input id="url" ng-model="api.url">
-			</div>
-			<div class="inputField">
-				Username:<br>
-				<input id="username" ng-model="api.username">
-			</div>
-			<div class="inputField">
-				Password:<br>
-				<input id="password" ng-model="api.password">
-			</div>
-			<div class="api_submit">
-				<br>
-				<button ng-click="submit_api_form(api)">Submit</button>
-			</div>
-		</form>
-		<div class="api_detail">
-			<span ng-bind="apigw_res"> <span>
+	<h5>API-GW Interface</h5>
+	<form name="api_interface" id="api_interface" novalidate>
+		<div class="inputField">
+			URL:
+			<br>
+			<input id="url" ng-model="api.url">
 		</div>
+		<div class="inputField">
+			Username:
+			<br>
+			<input id="username" ng-model="api.username">
+		</div>
+		<div class="inputField">
+			Password:
+			<br>
+			<input id="password" ng-model="api.password">
+		</div>
+		<div class="api_submit">
+			<br>
+			<button ng-click="submit_api_form(api)">Submit</button>
+		</div>
+	</form>
+	<div class="api_detail">
+		<span ng-bind="apigw_res">
+			<span>
+	</div>
 </div>
 </div>
