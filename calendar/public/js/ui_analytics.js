@@ -25,7 +25,6 @@ app.controller("UIAnalyticsCtrl", function (
 
 	var formatAPItimeoutData = function(obj){
 		var urls = obj.all_apis;
-		// debugger;
 		var uniqueurls = [];
 		var newurls = [];
 		urls.forEach(function(url){
@@ -47,7 +46,6 @@ app.controller("UIAnalyticsCtrl", function (
 	}
 
 	var updateCDPData = function (data) {
-		// debugger;
 		$scope.cdp_data = data;
 		$scope.cdp_banner_info = data.ui_details.banner_info;
 		$scope.cdp_graph_page_visit = formatData(data.ui_details.graph_page_visit);
@@ -65,7 +63,8 @@ app.controller("UIAnalyticsCtrl", function (
 	getBannerInfo();
 
 	socket.on("add", function (data) {
-		// debugger;
-		updateCDPData(data);
+		if (data.cdp_id == $rootScope.selectedCDPID){
+			updateCDPData(data);
+		}
 	});
 });

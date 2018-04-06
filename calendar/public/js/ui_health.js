@@ -29,7 +29,6 @@ app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socke
 
 	var getBannerInfo = function () {
 		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function (res) {
-			debugger;
 			$scope.cdp_details = res.data[0].cdp_details;
 		});
 	};
@@ -95,9 +94,10 @@ app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socke
 	getBannerInfo();
 
 	socket.on("add", function (data) {
-		debugger;
-		$scope.apigw_res = data.ui_details.apigw_res;
-		$scope.cdp_details = data.cdp_details;
-		getCDPDetailsInfo();
+		if (data.cdp_id == $rootScope.selectedCDPID){
+			$scope.apigw_res = data.ui_details.apigw_res;
+			$scope.cdp_details = data.cdp_details;
+			getCDPDetailsInfo();
+		}
 	});
 });
