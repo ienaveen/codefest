@@ -6,7 +6,7 @@ app.directive('liveBarChart', function () {
 			var setup = function (targetID) {
 				//Set size of svg element and chart
 				var margin = { top: 0, right: 0, bottom: 0, left: 0 },
-					width = 600 - margin.left - margin.right,
+					width = 500 - margin.left - margin.right,
 					height = 400 - margin.top - margin.bottom,
 					categoryIndent = 4 * 15 + 5,
 					defaultBarWidth = 2000;
@@ -70,7 +70,7 @@ app.directive('liveBarChart', function () {
 					.attr("class", "bar")
 					.attr("x", 0)
 					.attr("opacity", 0)
-					.attr("height", y.rangeBand())
+					.attr("height", y.rangeBand()-30)
 					.attr("width", function (d) { return x(d.value); })
 
 				//Add value labels
@@ -79,7 +79,7 @@ app.directive('liveBarChart', function () {
 					.attr("y", y.rangeBand() / 2)
 					.attr("x", 0)
 					.attr("opacity", 0)
-					.attr("dy", ".35em")
+					.attr("dy", "-0.5em")
 					.attr("dx", "0.5em")
 					.text(function (d) { return d.value; });
 
@@ -90,7 +90,7 @@ app.directive('liveBarChart', function () {
 					.attr("y", y.rangeBand() / 2)
 					.attr("x", categoryIndent)
 					.attr("opacity", 0)
-					.attr("dy", ".35em")
+					.attr("dy", "-0.5em")
 					.attr("dx", "0.5em")
 					.text(function (d) { return d.key });
 
@@ -184,7 +184,8 @@ app.directive('liveBarChart', function () {
 			// }, 3000);
 		},
 		template: `
-            <div id="livebarchart"></div>
+			<div id="livebarchart">
+			</div>
         `,
 		scope: {
 			cdpdata: "="

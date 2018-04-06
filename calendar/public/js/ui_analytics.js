@@ -28,6 +28,7 @@ app.controller("UIAnalyticsCtrl", function (
 		$scope.cdp_banner_info = data.ui_details.banner_info;
 		$scope.cdp_graph_page_visit = formatData(data.ui_details.graph_page_visit);
 		$scope.graph_js_errors = data.ui_details.graph_js_errors;
+		$scope.graph_api_errors = data.ui_details.graph_api_errors;
 	}
 
 	var getBannerInfo = function () {

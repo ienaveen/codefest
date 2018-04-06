@@ -3,7 +3,7 @@ app.directive('sunBurst', function () {
 		link: function (scope, element, attr) {
 			// Dimensions of sunburst.
 			var width = 1000;
-			var height = 600;
+			var height = 400;
 			var radius = Math.min(width, height) / 2;
 
 			// Breadcrumb dimensions: width, height, spacing, width of tip/tail.
