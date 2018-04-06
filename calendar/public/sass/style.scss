@@ -804,9 +804,12 @@ js-errors{
 	}
 }
 .ui_health{     
-.uib-tab.active {
+.uib-tab.active a{
         background-color: #56595e;
     color: #f4640c;
+}
+.hand {
+	    cursor: pointer;
 }
  a{
 	color: f4640c;
