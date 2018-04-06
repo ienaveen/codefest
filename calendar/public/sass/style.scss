@@ -1,6 +1,9 @@
 .cdps {
 	.card {
-		width: 400px;
+	    background-color: 56595e;
+    	opacity: 0.9;
+    	color: white;
+		width: 530px;
 		margin: 20px;
 		cursor: pointer;
 		display: inline-block;
@@ -12,16 +15,58 @@
 				color: red;
     			opacity: 1;
 			}
-		}
+		}		
 		.card-body {
 			height: 240px;
 		}
+		ul{
+		  margin-left: -40;
+		  margin-top: 11px;
+		}
+		h1{
+		   font-size:4rem;
+		}
+		h4{
+			font-size: 2.5rem;
+			opacity: 0.8;
+    		text-transform: uppercase;
+		}
+		.card-label{
+			    font-weight: bold;
+    			opacity: 0.8;
+		}
+		li{
+		   list-style: none;
+		}
+		.color-orange{
+			color:orange;
+		}
+		.color-red{
+			color:red;
+		}
+		.color-green{
+			color: #16e561;;
+		}
+		.color-blue{
+			color:blue;
+		}
+		.card-label{
+		    display: inline-block;
+    		width: 100px;
+		}
 
 		&:hover {
-			background: #eeeeee;
+			background: black;;
 		}
 	}
-
+	.jumbotron{
+     	padding:10px;   
+     	background-color: 56595e;
+     	color:f4640c;  
+			}
+    .image{
+        background-image: url("dist/cloud.jpg");
+    } 
 	.add-cdp i{
 		font-size: 6rem;
 		position: relative;
