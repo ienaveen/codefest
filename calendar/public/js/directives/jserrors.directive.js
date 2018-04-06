@@ -37,7 +37,7 @@ app.directive('jsErrors', function () {
 					"timestamp": "1522932258",
 					"message": "labels undefined",
 					"user_name": "user3@gmail.com",
-					"page_name": "APS"
+					"page_name": "SERVICES"
 				}
 			];
 
