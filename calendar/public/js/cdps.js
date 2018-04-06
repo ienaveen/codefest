@@ -3,6 +3,7 @@ app.controller("CDPCtrl", function ($scope, $location, $http, $rootScope, socket
 
 	$scope.cardClick = function(cdp) {
 		$localStorage.selectedCDPID = cdp.cdp_id;
+		$rootScope.selectedCDPID = cdp.cdp_id;
 		$location.path("/ui_health");
 	};
 

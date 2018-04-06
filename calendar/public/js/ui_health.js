@@ -8,6 +8,7 @@ app.controller("UIHealthCtrl", function (
 ) {
 
 	$scope.api = { "url": "", "username": "", "password": "" };
+	$rootScope.selectedCDPID = $localStorage.selectedCDPID;
 	$scope.tracebacks = [
 		{
 			"count": 1,

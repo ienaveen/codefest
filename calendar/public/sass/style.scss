@@ -803,7 +803,14 @@ js-errors{
 	stroke: steelblue;
 	}
 }
-
+.ui_health{
+	.jumbotron{
+     	padding:10px;   
+     	background-color: 56595e;
+     	color:f4640c;  
+     	text-transform: uppercase;
+			}
+}
 .ui_analytics_charts{
 	.card {
 		margin: 20px;

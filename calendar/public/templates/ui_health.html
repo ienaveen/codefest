@@ -1,4 +1,9 @@
-<div ng-controller="UIHealthCtrl">
+<div ng-controller="UIHealthCtrl" class="ui_health">
+    <div class="jumbotron">
+        <center> 
+            <h1 ng-bind="selectedCDPID"></h1> 
+        </center>
+    </div>
     <uib-tabset active="active" class="cdp_tabs">
         <uib-tab index="0">
 			<uib-tab-heading> UI Analytics </uib-tab-heading>
