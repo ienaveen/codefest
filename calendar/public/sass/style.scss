@@ -44,6 +44,27 @@
 	padding: 1rem;
 }
 
+.ui_analytics{
+	.banner {
+		margin: 30px 0px;
+		margin-left: 120px;
+		.card {
+			width: 17%;
+			display: inline-block;
+			margin-left: 10px;
+			.card-title {
+				text-align: center;
+			}
+			.card-value{
+				text-align: center;
+			}
+			&:hover {
+				background: #eeeeee;
+			}
+		}
+	}
+}
+
 .cdpHealth{
 	height: 3000px;
 .banner {
@@ -735,5 +756,14 @@ js-errors{
 	.focus circle {
 	fill: none;
 	stroke: steelblue;
+	}
+}
+
+.ui_analytics_charts{
+	.card {
+		margin: 20px;
+		display: inline-block;
+		float: left;
+		width: 45%;
 	}
 }

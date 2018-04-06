@@ -3,7 +3,8 @@ app.controller("UIAnalyticsCtrl", function (
 	$location,
 	$rootScope,
 	$http,
-	socket
+	socket,
+	$localStorage
 ) {
 
 	var formatData = function (data) {
@@ -24,12 +25,12 @@ app.controller("UIAnalyticsCtrl", function (
 
 	var updateCDPData = function (data) {
 		$scope.cdp_data = data;
-		$scope.cdp_banner_info = data.ui_details.banner_info;
-		$scope.cdp_graph_page_visit = formatData(data.ui_details.graph_page_visit);
+		$scope.cdp_banner_info = data.banner_info;
+		$scope.cdp_graph_page_visit = formatData(data.graph_page_visit);
 	}
 
 	var getBannerInfo = function () {
-		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function (res) {
+		$http.get("/coc/cdps/" + $localStorage.selectedCDPID).then(function (res) {
 			updateCDPData(res.data[0]);
 		});
 	};

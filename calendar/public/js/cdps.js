@@ -1,14 +1,17 @@
-app.controller("CDPCtrl", function($scope, $location, $http, $rootScope, socket) {
+app.controller("CDPCtrl", function ($scope, $location, $http, $rootScope, socket, $localStorage) {
 	var self = this;
 
 	$scope.cardClick = function(cdp) {
-		$rootScope.selectedCDPID = cdp.cdp_id;
+		$localStorage.selectedCDPID = cdp.cdp_id;
 		$location.path("/ui_health");
 	};
+
+	$scope.cdps = $localStorage.cdps;
 
 	$scope.getCDP = function() {
 		$http.get("/coc/cdps").then(function(res) {
 			$scope.cdps = res.data;
+			$localStorage.cdps = $scope.cdps;
 		});
 	};
 	// socket.emit('requestInit');
@@ -25,7 +28,7 @@ app.controller("CDPCtrl", function($scope, $location, $http, $rootScope, socket)
         }
         if (exists)
             $scope.cdps[indx] = data
-        else 
+        else
 		      $scope.cdps.push(data);
 	});
 
