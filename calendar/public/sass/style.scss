@@ -80,13 +80,22 @@
 		}
 	}
 	.version_box {
-		height:	auto;
+		height:	70px;
 		width: 9.74%;
 		padding: 10px;
 		display: inline-block;
 		border-right: 1px solid rgba(0,0,0,.125);
     	&:hover {
 			background: #eeeeee;
+		}
+		.pod_details{
+			height: 26px;
+			border-bottom: 1px solid rgba(0,0,0,.125);
+			text-align: center;
+
+			h5{
+				margin: 0 !important;
+			}
 		}
 	}
 }
@@ -135,8 +144,8 @@
 	}
 
 	.api_detail{
-		margin-top: 210px;
-		height: 200px;
+		margin-top: 150px;
+		height: 275px;
 		border: 1px solid rgba(0, 0, 0, 0.125);
     	border-radius: .25rem;
 	}
