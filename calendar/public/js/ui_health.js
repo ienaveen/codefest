@@ -1,11 +1,4 @@
-app.controller("UIHealthCtrl", function (
-	$scope,
-	$location,
-	$rootScope,
-	$http,
-	socket,
-	$localStorage
-) {
+app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socket,$localStorage) {
 
 	$scope.api = { "url": "", "username": "", "password": "" };
 	$rootScope.selectedCDPID = $localStorage.selectedCDPID;
@@ -34,6 +27,15 @@ app.controller("UIHealthCtrl", function (
 		$location.path("/")
 
 	}
+
+	var getBannerInfo = function () {
+		$http.get("/coc/cdps/" + $rootScope.selectedCDPID).then(function (res) {
+			debugger;
+			$scope.cdp_details = res.data[0].cdp_details;
+		});
+	};
+
+	getBannerInfo();
 	$scope.options = {
 		chart: {
 			type: 'pieChart',
@@ -61,35 +63,23 @@ app.controller("UIHealthCtrl", function (
 	};
 
 	var getCDPDetailsInfo = function () {
-		$scope.cdp_details_info = [
-			{
-				key: "ofc",
-				y: 5
-			},
-			{
-				key: "ucc-se-flow-mgr",
-				y: 2
-			},
-			{
-				key: "frontend-controller",
-				y: 9
-			},
-			{
-				key: "kong-controller",
-				y: 7
-			},
-			{
-				key: "nginx-controller",
-				y: 4
-			}
-		];
+		$scope.cdp_details_info = []
+		var cdp_details_info = $scope.cdp_details.faulty_pods;
+		var a = Object.keys(cdp_details_info)
+		var obj;
+		for(var i=0;i<a.length;i++){
+			obj = {};
+			obj.key = a[i];
+			obj.y = cdp_details_info[a[i]]
+			$scope.cdp_details_info.push(obj);
+		}
 	}
-
-	getCDPDetailsInfo();
+	
 	var getBannerInfo = function () {
 		$http.get("/coc/cdps/" + $localStorage.selectedCDPID).then(function (res) {
 			var cdp_data = res.data[0];
 			$scope.cdp_banner_info = cdp_data.ui_details.banner_info;
+			getCDPDetailsInfo();
 		});
 	};
 
@@ -106,6 +96,9 @@ app.controller("UIHealthCtrl", function (
 	getBannerInfo();
 
 	socket.on("add", function (data) {
+		debugger;
 		$scope.apigw_res = data.ui_details.apigw_res;
+		$scope.cdp_details = data.cdp_details;
+		getCDPDetailsInfo();
 	});
 });

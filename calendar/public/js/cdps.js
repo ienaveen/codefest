@@ -19,6 +19,7 @@ app.controller("CDPCtrl", function ($scope, $location, $http, $rootScope, socket
 	$scope.getCDP();
 
 	socket.on("add", function(data) {
+		debugger;
 		//alert('in add');
         var exists = false,indx;
         for (var i =0;i<$scope.cdps.length;i++){

@@ -49,30 +49,12 @@ app.directive('donutAnimationChart', function () {
 
 
 			datasetTotal = [
-				{ label: "Category 1", value: 19 },
-				{ label: "Category 2", value: 5 },
-				{ label: "Category 3", value: 13 },
-				{ label: "Category 4", value: 17 },
-				{ label: "Category 5", value: 19 },
-				{ label: "Category 6", value: 27 }
-			];
-
-			datasetOption1 = [
-				{ label: "Category 1", value: 22 },
-				{ label: "Category 2", value: 33 },
-				{ label: "Category 3", value: 4 },
-				{ label: "Category 4", value: 15 },
-				{ label: "Category 5", value: 36 },
-				{ label: "Category 6", value: 0 }
-			];
-
-			datasetOption2 = [
-				{ label: "Category 1", value: 10 },
-				{ label: "Category 2", value: 20 },
-				{ label: "Category 3", value: 30 },
-				{ label: "Category 4", value: 5 },
-				{ label: "Category 5", value: 12 },
-				{ label: "Category 6", value: 23 }
+				{ label: "groups/modify_group/v2", value: 19 },
+				{ label: "config/access_rule", value: 35 },
+				{ label: "config/wlan_captive", value: 13 },
+				{ label: "groups/v1/addgroup", value: 17 },
+				{ label: "switch/dhcp_pools", value: 19 },
+				{ label: "config/snapshot", value: 27 }
 			];
 
 			change(datasetTotal);
@@ -229,8 +211,6 @@ app.directive('donutAnimationChart', function () {
 		template: `
 			<div id="donutanimationchart">
 				<label><input type="radio" name="dataset" id="dataset" value="total" checked> Total</label>
-				<label><input type="radio" name="dataset" id="dataset" value="option1"> Option 1</label>
-				<label><input type="radio" name="dataset" id="dataset" value="option2"> Option 2</label>
 			</div>
         `,
 		scope: {
