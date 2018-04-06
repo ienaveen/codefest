@@ -29,11 +29,11 @@ app.controller("UIHealthCtrl", function (
 			"error_message": "[ERROR] [10305] [-:-] hp_stack_stats.py:77 'Not able to find a stack member. CID: 30023522 device_id: HKKF000041 member_id: 2'"
 		}
 	];
-	$scope.showHome = function(){
-		debugger;
-		$location.path("/")
 
+	$scope.showHome = function () {
+		$location.path("/")
 	}
+
 	$scope.options = {
 		chart: {
 			type: 'pieChart',

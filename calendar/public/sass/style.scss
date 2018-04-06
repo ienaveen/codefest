@@ -15,7 +15,7 @@
 				color: red;
     			opacity: 1;
 			}
-		}		
+		}
 		.card-body {
 			height: 240px;
 		}
@@ -60,13 +60,13 @@
 		}
 	}
 	.jumbotron{
-     	padding:10px;   
+     	padding:10px;
      	background-color: 56595e;
-     	color:f4640c;  
+     	color:f4640c;
 			}
     .image{
         background-image: url("dist/cloud.jpg");
-    } 
+    }
 	.add-cdp i{
 		font-size: 6rem;
 		position: relative;
@@ -238,6 +238,12 @@
 }
 
 live-bar-chart {
+
+
+	svg{
+		margin-top: 1rem;
+	}
+
 	body,
 	div,
 	span,
@@ -353,16 +359,16 @@ live-bar-chart {
 		height: 400px;
 	}
 	.bar {
-		fill: #eaeaea;
+		fill: #56595e;;
 	}
 	text.label {
-		fill: #777777;
-		color: #777777;
+		fill: #f4640c;
+		color: #f4640c;
 		font-size: 20px;
 		font-weight: bold;
 	}
 	text.category {
-		fill: #666666;
+		fill: #f4640c;
 		font-size: 14px;
 	}
 }
@@ -803,9 +809,9 @@ js-errors{
 	stroke: steelblue;
 	}
 }
-.ui_health{     
+.ui_health{
 .uib-tab.active a{
-        background-color: #56595e;
+    background-color: #56595e;
     color: #f4640c;
 }
 .hand {
@@ -815,16 +821,16 @@ js-errors{
 	color: f4640c;
 	}
 	.jumbotron{
-     	padding:10px;   
+     	padding:10px;
      	background-color: 56595e;
-     	color:f4640c;  
+     	color:f4640c;
      	text-transform: uppercase;
      	i{
      	    font-size: 3rem;
      	}
 	}
 	.cdp_id{
-	    display: inline-block;    
+	    display: inline-block;
     	margin-left: 700px;
     	}
 }
@@ -856,4 +862,8 @@ api-error-chart{
 	#apidesc{
 		height: 50px;
 	}
+}
+
+.chart-title{
+	font-size: 1rem;
 }
