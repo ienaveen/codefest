@@ -155,7 +155,6 @@ app.directive('liveBarChart', function () {
 				d3.json("page_visited.json", function (err, data1) {
 
 					scope.$watch("cdpdata", function (newData, oldData) {
-						debugger;
 						newData = formatData(newData);
 						callback(settings, newData);
 					});

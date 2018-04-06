@@ -67,15 +67,18 @@ var parseResponse = function(cdps){
 	            	js_errors = js_errors + obj.ui_details.users[i].pages[j].js_exceptions.length;
 	            	// console.log('exceptions' + obj.ui_details.users[i].pages[j].js_exceptions[0].timestamp)
 	            	// console.log('exceptions pagename' + obj.ui_details.users[i].pages[j].page_name)
-	            	graph_js_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].js_exceptions[0]) 
+	            	if (graph_js_errors[obj.ui_details.users[i].pages[j].page_name])
+	            		graph_js_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].js_exceptions[0]) 
 
 	            }
 	            if (obj.ui_details.users[i].pages[j].api_errors){
 	            	api_errors = api_errors + obj.ui_details.users[i].pages[j].api_errors.length;
-	            	graph_api_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_errors[0]) 
+	            	if (graph_api_errors[obj.ui_details.users[i].pages[j].page_name])
+	            		graph_api_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_errors[0]) 
 	            }
 	            if (obj.ui_details.users[i].pages[j].api_time){
-	            	graph_api_time[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_time[0]) 
+	            	if (graph_api_time[obj.ui_details.users[i].pages[j].page_name])
+	            		graph_api_time[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_time[0]) 
 	            	graph_api_time.all_apis.push(obj.ui_details.users[i].pages[j].api_time[0])
 	            }
 			}

@@ -37,7 +37,6 @@ app.controller("UIAnalyticsCtrl", function (
 	getBannerInfo();
 
 	socket.on("add", function (data) {
-		debugger;
 		updateCDPData(data);
 	});
 });
