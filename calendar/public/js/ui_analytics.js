@@ -24,13 +24,18 @@ app.controller("UIAnalyticsCtrl", function (
 	}
 
 	var formatAPItimeoutData = function(obj){
-		var urls = [];
+		var urls = obj.all_apis;
+		// debugger;
+		var uniqueurls = [];
+		var newurls = [];
+		urls.forEach(function(url){
+			if(uniqueurls.indexOf(url.url) === -1){
+				uniqueurls.push(url.url);
+				newurls.push(url);
+			}
+		})
 
-		for( var key in obj){
-			obj[key].forEach(function(item){
-				urls.push(item);
-			});
-		}
+		urls = newurls;
 
 		urls.sort(function(a,b){
 			return b.time - a.time;
@@ -42,6 +47,7 @@ app.controller("UIAnalyticsCtrl", function (
 	}
 
 	var updateCDPData = function (data) {
+		// debugger;
 		$scope.cdp_data = data;
 		$scope.cdp_banner_info = data.ui_details.banner_info;
 		$scope.cdp_graph_page_visit = formatData(data.ui_details.graph_page_visit);
@@ -59,6 +65,7 @@ app.controller("UIAnalyticsCtrl", function (
 	getBannerInfo();
 
 	socket.on("add", function (data) {
+		// debugger;
 		updateCDPData(data);
 	});
 });

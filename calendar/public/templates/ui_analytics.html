@@ -36,13 +36,13 @@
 
 		<div class="card">
 			<div class="card-body">
-				<js-errors jserrordata="graph_js_errors"></js-errors>
+				<api-error-chart apierrors="graph_api_errors"></api-error-chart>
 			</div>
 		</div>
 
 		<div class="card">
 			<div class="card-body">
-				<api-error-chart apierrors="graph_api_errors"></api-error-chart>
+				<js-errors jserrordata="graph_js_errors"></js-errors>
 			</div>
 		</div>
 
@@ -52,17 +52,26 @@
 				<api-timeout apitimeout="graph_api_time"></api-timeout>
 			</div>
 		</div>
+
+		<div class="card sunburstchart">
+			<div class="card-body">
+				<sun-burst></sun-burst>
+			</div>
+		</div>
+
+		<div class="card vbarchart">
+			<div class="card-body">
+				<animated-v-bar-chart></animated-v-bar-chart>
+			</div>
+		</div>
 	</div>
 
-	<sun-burst></sun-burst>
-
-	<line-chart></line-chart>
-	<pie-chart></pie-chart>
-	<donut-chart></donut-chart>
+	<!-- <line-chart></line-chart> -->
+	<!-- <pie-chart></pie-chart>
+	<donut-chart></donut-chart> -->
 	<!-- <donut-animation-chart></donut-animation-chart> -->
-	<animated-v-bar-chart></animated-v-bar-chart>
-	<animated-h-bar-chart></animated-h-bar-chart>
-	<tree-map></tree-map>
+	<!-- <animated-h-bar-chart></animated-h-bar-chart> -->
+	<!-- <tree-map></tree-map> -->
 
 
 </div>

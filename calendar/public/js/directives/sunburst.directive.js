@@ -365,6 +365,7 @@ app.directive('sunBurst', function () {
 		},
 		template: `
 			<div id="sunburst">
+				<h1 class="chart-title">UI Workflows</h1>
 				<div id="main">
 				<div id="sequence"></div>
 				<div id="chart">
