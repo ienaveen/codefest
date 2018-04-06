@@ -3,7 +3,8 @@ app.controller("UIHealthCtrl", function (
 	$location,
 	$rootScope,
 	$http,
-	socket
+	socket,
+	$localStorage
 ) {
 
 	$scope.api = { "url": "", "username": "", "password": "" };
