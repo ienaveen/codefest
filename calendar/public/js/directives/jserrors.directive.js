@@ -73,7 +73,7 @@ app.directive('jsErrors', function () {
 
 				scope.$watch("jserrordata", function (newData, oldData) {
 					// debugger;
-					if (!newData) {
+					if (!newData || oldData) {
 						return;
 					}
 

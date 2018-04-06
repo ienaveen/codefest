@@ -36,6 +36,25 @@ app.controller("CDPCtrl", function ($scope, $location, $http, $rootScope, socket
 
 	$scope.update = function() {};
 
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+
+
 	$scope.postCDP = function(newCDP) {
 		$http.post("/coc/cdps", newCDP).then(function(res) {
 			toastr.success("New CDP " + newCDP.cdp_details.title + " added");

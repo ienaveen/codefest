@@ -1,4 +1,4 @@
-app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socket,$localStorage) {
+app.controller("UIHealthCtrl", function ($scope, $location, $rootScope, $http, socket, $localStorage) {
 
 	$scope.api = { "url": "", "username": "", "password": "" };
 	$rootScope.selectedCDPID = $localStorage.selectedCDPID;
@@ -65,14 +65,14 @@ app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socke
 		var cdp_details_info = $scope.cdp_details.faulty_pods;
 		var a = Object.keys(cdp_details_info)
 		var obj;
-		for(var i=0;i<a.length;i++){
+		for (var i = 0; i < a.length; i++) {
 			obj = {};
 			obj.key = a[i];
 			obj.y = cdp_details_info[a[i]]
 			$scope.cdp_details_info.push(obj);
 		}
 	}
-	
+
 	var getBannerInfo = function () {
 		$http.get("/coc/cdps/" + $localStorage.selectedCDPID).then(function (res) {
 			var cdp_data = res.data[0];
@@ -100,4 +100,39 @@ app.controller("UIHealthCtrl", function ($scope,$location,$rootScope,$http,socke
 			getCDPDetailsInfo();
 		}
 	});
+
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+
+
+	$scope.upgrade = function () {
+		toastr.success("Upgrade started");
+	}
+
+	$scope.restart_pod = function () {
+		toastr.success("Pods restarted");
+	}
+
+	$scope.download_snapshot = function () {
+		toastr.success("Snapshot created");
+	}
+
+	$scope.trigger_plv = function () {
+		toastr.success("PLV trigerred");
+	}
 });
