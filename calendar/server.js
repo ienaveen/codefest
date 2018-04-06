@@ -39,12 +39,7 @@ var parseResponse = function(cdps){
                     "VPN":0                    
                     };
     var graph_js_errors = [];
-    var graph_api_errors = {"NETWORKS":[],
-                    "SYSTEM":[],
-                    "SERVICES":[],
-                    "DHCP":[],
-                    "VPN":[]                    
-                    };
+
       var graph_api_time = {"NETWORKS":[],
                     "SYSTEM":[],
                     "SERVICES":[],
@@ -72,11 +67,7 @@ var parseResponse = function(cdps){
 	            		
 
 	            }
-	            if (obj.ui_details.users[i].pages[j].api_errors){
-	            	api_errors = api_errors + obj.ui_details.users[i].pages[j].api_errors.length;
-	            	if (graph_api_errors[obj.ui_details.users[i].pages[j].page_name])
-	            		graph_api_errors[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_errors[0]) 
-	            }
+
 	            if (obj.ui_details.users[i].pages[j].api_time){
 	            	if (graph_api_time[obj.ui_details.users[i].pages[j].page_name])
 	            		graph_api_time[obj.ui_details.users[i].pages[j].page_name].push(obj.ui_details.users[i].pages[j].api_time[0]) 
