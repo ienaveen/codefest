@@ -5,7 +5,7 @@ app.directive('apiTimeout', function () {
 
 
 			scope.$watch("apitimeout", function (newData, oldData) {
-				// debugger;
+
 				if (!!(d3.select("#apitimeoutchart svg"))){
 					d3.select("#apitimeoutchart svg").remove();
 				}
