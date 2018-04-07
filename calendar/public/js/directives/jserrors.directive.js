@@ -72,7 +72,7 @@ app.directive('jsErrors', function () {
 			d3.tsv("data.tsv", function (error, data1) {
 
 				scope.$watch("jserrordata", function (newData, oldData) {
-					// debugger;
+
 					if (!newData || oldData && (newData !== oldData)) {
 						return;
 					}
